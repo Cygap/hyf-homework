@@ -251,7 +251,7 @@ header {
 .dates-of-work,
 .company,
 .position,
-ul>p {
+li:first-child {
     font-weight: bold;
     color: chocolate;
     text-align: center;
@@ -262,7 +262,7 @@ ul>p {
     /*didn't like the looks of the same color for all the info points*/
 }
 
-ul>p {
+li:first-child {
     margin-top: 2%;
     /*make a little more room for the start of the list*/
 }
