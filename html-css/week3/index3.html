@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Sign up to yourcustomtailor.com step-3</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo-nav-wrapper">
+        <img
+          src="https://dummyimage.com/80x80/ccc/000.png&text=Logo"
+          alt="logo placeholder"
+          class="logo" />
+        <nav class="header-nav">Navigation</nav>
+      </div>
+      <h1>Sign up to yourcustomtailor.com</h1>
+    </header>
+
+    <form action="#" method="get">
+      <div class="current-step">
+        <h2>Step 4/4 - Payment</h2>
+        <div class="animation"><span class="progress step4"></span></div>
+      </div>
+      <fieldset class="payment">
+        <div class="field">
+          <label for="credit-card-name">Name on credit-card</label>
+          <input
+            type="text"
+            name="credit-card-name"
+            id="credit-card-name"
+            required
+            pattern="\w*" />
+          <label for="credit-card-name"></label>
+        </div>
+        <div class="field">
+          <label for="card-type">Card type</label>
+          <select name="card-type" id="card-type" required>
+            <option value="">Visa</option>
+            <option value="MasterCard">Master card</option>
+            <option value="AmEx">American express</option>
+            <option value="Dankort">Dankort</option>
+          </select>
+          <label for="card-type"></label>
+        </div>
+        <div class="field">
+          <label for="card-number">Credit card number</label>
+          <input
+            type="tel"
+            name="card-number"
+            id="card-number"
+            pattern="/(\d{4,4}(\s|\-)?){4,4}/gm"
+            required />
+          <!-- any 16-digit numbers, where each 4 digits may be (optional) separated bu space or "-" -->
+          <label for="card-number"></label>
+        </div>
+      </fieldset>
+      <fieldset class="short-data">
+        <div class="field">
+          <label for="exp-mm">Expiry month</label>
+          <input
+            type="tel"
+            name="exp-mm"
+            id="exp-mm"
+            pattern="^1[012]?|[2-9]{1,1}$"
+            required />
+          <!-- Checks whether the month number is one of twelve. Doesn't allow the numbers like "03" or "09" however-->
+          <label for="exp-mm"></label>
+        </div>
+        <div class="field">
+          <label for="exp-yy">Expiry year</label>
+          <input type="tel" name="exp-yy" id="exp-yy" pattern="\d\d" required />
+          <label for="exp-yy"></label>
+        </div>
+        <div class="field">
+          <label for="cvv">CVV</label>
+          <input type="tel" name="cvv" id="cvv" pattern="\d\d\d" required />
+          <label for="cvv"></label>
+        </div>
+      </fieldset>
+      <div class="buttons-wrapper"><button type="submit">PAY!</button></div>
+    </form>
+  </body>
+</html>
