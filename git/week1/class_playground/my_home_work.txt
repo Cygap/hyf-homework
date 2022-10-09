@@ -1,0 +1,9 @@
+Sample text for imitating a homework
+
+Another couple 
+of 
+lines 
+to
+the file!
+
+And a little more text to this file
