@@ -1,10 +1,13 @@
+// here the progress for warming up part can be found
 const myFreeCodeCampUserName = "https://www.freecodecamp.org/sudar";
 
+//here goes the code for the task 1
 const yearOfBirth = Number(prompt("enter your year of birth"));
 const yearFuture = Number(prompt("enter the year in a future"));
 const age = yearFuture - yearOfBirth;
 alert(`You will be ${age} years old in ${yearFuture}`);
 
+//here goes the code for the task2
 const dogYearOfBirth = Number(prompt("enter your dog's year of birth"));
 const dogYearFuture = Number(prompt("enter the year in a future"));
 const shouldShowResultInDogYears = Boolean(
@@ -25,6 +28,7 @@ alert(
     years old in ${dogYearFuture}`
 );
 
+//here goes the code for the task 3
 class House {
   constructor(gardenSizeInM2, houseWidth, houseHeight, houseDepth) {
     this.volumeInMeters = houseWidth * houseHeight * houseDepth;
@@ -72,6 +76,7 @@ if (juliasHouse.housePrice < juliasAskPrice) {
   );
 }
 
+//here goes the code for the task 4
 const firstWords = [
   "ragged",
   "medical",
@@ -97,8 +102,8 @@ const secondWords = [
   "difficulty",
 ];
 let startupName = "";
-let randomNumber = Math.floor(Math.random() * 10);
+let randomNumber = Math.floor(Math.random() * firstWords.length);
 startupName += firstWords[randomNumber];
-randomNumber = Math.floor(Math.random() * 10);
+randomNumber = Math.floor(Math.random() * secondWords.length);
 startupName += " " + secondWords[randomNumber];
 alert(startupName);
