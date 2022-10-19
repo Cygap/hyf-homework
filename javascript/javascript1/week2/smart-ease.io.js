@@ -73,32 +73,86 @@ const myFreeCodeCamp = "https://www.freecodecamp.org/sudar";
 // );
 
 //Fifth task code: Student manager
-const class23Students = [];
-function addStudentToClass(studentName) {
-  if (class23Students.indexOf(studentName) !== -1) {
-    console.log(`Student ${studentName} is already in class23`);
-  } else if (studentName == "") {
-    console.log("The student's name can't be an empty string!");
-  } else if (class23Students.length < 6 || studentName === "Queen") {
-    class23Students.push(studentName);
+// const class23Students = [];
+// function addStudentToClass(studentName) {
+//   if (class23Students.indexOf(studentName) !== -1) {
+//     console.log(`Student ${studentName} is already in class23`);
+//   } else if (studentName == "") {
+//     console.log("The student's name can't be an empty string!");
+//   } else if (class23Students.length < 6 || studentName === "Queen") {
+//     class23Students.push(studentName);
+//   } else {
+//     console.log("Class 23 is full");
+//   }
+// }
+
+// function getNumberOfStudents() {
+//   return class23Students.length;
+// }
+
+// for (let i = 0; i < 4; i++) {
+//   addStudentToClass(`Student${i}`);
+// }
+// addStudentToClass("Student1");
+// addStudentToClass("");
+// addStudentToClass("Anakin Skywalker");
+// addStudentToClass("Darth Wader");
+// addStudentToClass("Queen");
+// addStudentToClass("Princess Amidala");
+
+// console.log(getNumberOfStudents());
+// console.log(class23Students);
+
+//Fifth, bonus, task code: Candy helper
+const candyPrice = {
+  Sweet: 0.5,
+  Chocolate: 0.7,
+  Toffee: 1.1,
+  "Chewing-gum": 0.03,
+};
+const boughtCandyPrices = [];
+const amountToSpend = Math.floor(Math.random() * 100);
+console.log(`You can buy candies for ${amountToSpend} credits`);
+
+function addCandy(candyType, weight) {
+  boughtCandyPrices.push(Number((candyPrice[candyType] * weight).toFixed(3)));
+  console.log(
+    `Your order is: ${boughtCandyPrices}. The last addition is ${weight} grams of ${candyType} for ${
+      candyPrice[candyType]
+    } per gram, in total we added: ${
+      candyPrice[candyType] * weight
+    } to your order`
+  );
+}
+
+function canBuyMoreCandy(order, allowance) {
+  if (getTotalPrice(order) < allowance) {
+    console.log("You can buy more, so please do!");
+    return true;
   } else {
-    console.log("Class 23 is full");
+    console.log("Enough candy for you!");
+    return false;
   }
 }
 
-function getNumberOfStudents() {
-  return class23Students.length;
+function getTotalPrice(order) {
+  //did not understood, why the assignment asks to use while loop in stead of "for .. of .." loop
+  let i = 0;
+  let total = 0;
+  while (order[i]) {
+    total += order[i];
+    i++;
+  }
+  console.log(`You already have ordered for ${total} credits`);
+  return total;
 }
 
-for (let i = 0; i < 4; i++) {
-  addStudentToClass(`Student${i}`);
-}
-addStudentToClass("Student1");
-addStudentToClass("");
-addStudentToClass("Anakin Skywalker");
-addStudentToClass("Darth Wader");
-addStudentToClass("Queen");
-addStudentToClass("Princess Amidala");
+function getRandomProperty(obj) {
+  const keys = Object.keys(obj);
 
-console.log(getNumberOfStudents());
-console.log(class23Students);
+  return keys[Math.floor(Math.random() * keys.length)];
+}
+
+while (canBuyMoreCandy(boughtCandyPrices, amountToSpend)) {
+  addCandy(getRandomProperty(candyPrice), Math.floor(Math.random() * 50));
+}
