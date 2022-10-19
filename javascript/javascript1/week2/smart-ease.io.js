@@ -31,17 +31,43 @@ const myFreeCodeCamp = "https://www.freecodecamp.org/sudar";
 
 // alert(`The full name will be: ${fullName2}`);
 
-//third task code: Event application
-function getEventWeekday(inNDays) {
-  const meetingDay = new Date();
-  meetingDay.setDate(meetingDay.getDate() + inNDays);
-  return meetingDay.toLocaleDateString("en-GB", { weekday: "long" });
+// //third task code: Event application
+// function getEventWeekday(inNDays) {
+//   const meetingDay = new Date();
+//   meetingDay.setDate(meetingDay.getDate() + inNDays);
+//   return meetingDay.toLocaleDateString("en-GB", { weekday: "long" });
 
-  //Alternatevely we could use the following formula: (today.getDay() + inNDays % 7) to know the meeting's weekday number in future, then populate array with weekday names and choose the right index for the day name remembering to substract 1 from future day number to map with the index numeration starting from 0;
-  //However .toLocaleDateString seems more elegant way.
+//   //Alternatevely we could use the following formula: (today.getDay() + inNDays % 7) to know the meeting's weekday number in future, then populate array with weekday names and choose the right index for the day name remembering to substract 1 from future day number to map with the index numeration starting from 0;
+//   //However .toLocaleDateString seems more elegant way.
+// }
+// alert(
+//   `Your meeting will be on ${getEventWeekday(
+//     Number(prompt("Please, enter the number of days left before the meeting"))
+//   )}`
+// );
+
+//Fourth task code: Weather wear
+function shouldWear(temp) {
+  return temp < -60
+    ? "spacesuit"
+    : temp < -30
+    ? "Arctic Expedition & Polar Clothing"
+    : temp < -10
+    ? "Warm jacket and pair of good trousers"
+    : temp < 0
+    ? "Jacket and pants"
+    : temp < 10
+    ? " a parka, biker jacket or leather jacket"
+    : temp < 20
+    ? "Hoodie and jeans"
+    : temp < 30
+    ? "T-shirt and shorts"
+    : temp < 50
+    ? "thawb and kufiyah"
+    : "spacesuite";
 }
 alert(
-  `Your meeting will be on ${getEventWeekday(
-    Number(prompt("Please, enter the number of days left before the meeting"))
+  `You probably will be better of wearing ${shouldWear(
+    Number(prompt("Enter current tempreture in C:"))
   )}`
 );
