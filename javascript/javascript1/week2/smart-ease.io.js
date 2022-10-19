@@ -46,28 +46,59 @@ const myFreeCodeCamp = "https://www.freecodecamp.org/sudar";
 //   )}`
 // );
 
-//Fourth task code: Weather wear
-function shouldWear(temp) {
-  return temp < -60
-    ? "spacesuit"
-    : temp < -30
-    ? "Arctic Expedition & Polar Clothing"
-    : temp < -10
-    ? "Warm jacket and pair of good trousers"
-    : temp < 0
-    ? "Jacket and pants"
-    : temp < 10
-    ? " a parka, biker jacket or leather jacket"
-    : temp < 20
-    ? "Hoodie and jeans"
-    : temp < 30
-    ? "T-shirt and shorts"
-    : temp < 50
-    ? "thawb and kufiyah"
-    : "spacesuite";
+// //Fourth task code: Weather wear
+// function shouldWear(temp) {
+//   return temp < -60
+//     ? "spacesuit"
+//     : temp < -30
+//     ? "Arctic Expedition & Polar Clothing"
+//     : temp < -10
+//     ? "Warm jacket and pair of good trousers"
+//     : temp < 0
+//     ? "Jacket and pants"
+//     : temp < 10
+//     ? " a parka, biker jacket or leather jacket"
+//     : temp < 20
+//     ? "Hoodie and jeans"
+//     : temp < 30
+//     ? "T-shirt and shorts"
+//     : temp < 50
+//     ? "thawb and kufiyah"
+//     : "spacesuite";
+// }
+// alert(
+//   `You probably will be better of wearing ${shouldWear(
+//     Number(prompt("Enter current tempreture in C:"))
+//   )}`
+// );
+
+//Fifth task code: Student manager
+const class23Students = [];
+function addStudentToClass(studentName) {
+  if (class23Students.indexOf(studentName) !== -1) {
+    console.log(`Student ${studentName} is already in class23`);
+  } else if (studentName == "") {
+    console.log("The student's name can't be an empty string!");
+  } else if (class23Students.length < 6 || studentName === "Queen") {
+    class23Students.push(studentName);
+  } else {
+    console.log("Class 23 is full");
+  }
 }
-alert(
-  `You probably will be better of wearing ${shouldWear(
-    Number(prompt("Enter current tempreture in C:"))
-  )}`
-);
+
+function getNumberOfStudents() {
+  return class23Students.length;
+}
+
+for (let i = 0; i < 4; i++) {
+  addStudentToClass(`Student${i}`);
+}
+addStudentToClass("Student1");
+addStudentToClass("");
+addStudentToClass("Anakin Skywalker");
+addStudentToClass("Darth Wader");
+addStudentToClass("Queen");
+addStudentToClass("Princess Amidala");
+
+console.log(getNumberOfStudents());
+console.log(class23Students);
