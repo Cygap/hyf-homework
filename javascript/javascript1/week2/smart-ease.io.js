@@ -9,7 +9,7 @@ function getFullname(
 ) {
   if (firstName === "") firstName = "*No name*";
   if (lastName === "") lastName = "*No last name*";
-  //had to perform another check for the case user does not cancels input,
+  //had to perform another check for the case user does not cancel input,
   // which results in empty object and triggers the default, but
   // when the user just leaves input blanc and presses OK - this will return an empty string,
   // which does not trigger the default.
@@ -52,7 +52,7 @@ alert(
 );
 
 //Fourth task code: Weather wear
-function shouldWear(temp) {
+/*function shouldWear(temp) {
   return temp < -60
     ? "spacesuit"
     : temp < -30
@@ -70,7 +70,31 @@ function shouldWear(temp) {
     : temp < 50
     ? "thawb and kufiyah"
     : "spacesuite";
+}*/
+//Decided to rewrite conditions using if for better readability:
+
+function shouldWear(temp) {
+  if (temp < -60) {
+    return "spacesuit";
+  } else if (temp < -30) {
+    return "Arctic Expedition & Polar Clothing";
+  } else if (temp < -10) {
+    return "Warm jacket and pair of good trousers";
+  } else if (temp < 0) {
+    return "Jacket and pants";
+  } else if (temp < 10) {
+    return "a parka, biker jacket or leather jacket";
+  } else if (temp < 20) {
+    return "Hoodie and jeans";
+  } else if (temp < 30) {
+    return "T-shirt and shorts";
+  } else if (temp < 50) {
+    return "thawb and kufiyah";
+  } else {
+    return "spacesuite";
+  }
 }
+
 alert(
   `You probably will be better of wearing ${shouldWear(
     Number(prompt("Enter current tempreture in C:"))
@@ -131,8 +155,6 @@ function addCandy(candyType, weight) {
 }
 
 function canBuyMoreCandy(order, allowance) {
-  // Alternatively could have written: if (order.reduce((sum, current) => sum + current, 0) < allowance) { ... }
-  // this probably would work faster then the function I wrote...
   if (getTotalPrice(order) < allowance) {
     console.log("You can buy more, so please do!");
     return true;
@@ -149,6 +171,8 @@ function getTotalPrice(order) {
   while (order[i]) {
     total += order[i];
     i++;
+    // Alternatively could have written: if (order.reduce((sum, current) => sum + current, 0) < allowance) { ... }
+    // this probably would work faster then the function I wrote...
   }
   console.log(`You already have ordered for ${total} credits`);
   return total;
