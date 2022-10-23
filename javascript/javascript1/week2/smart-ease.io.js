@@ -9,7 +9,10 @@ function getFullname(
 ) {
   if (firstName === "") firstName = "*No name*";
   if (lastName === "") lastName = "*No last name*";
-  //had to perform another check for the case user does not cancels input, which results in empty object and triggers the default, but when the user just leaves input blanc and presses OK - this will return an empty string, which does not trigger the default.
+  //had to perform another check for the case user does not cancels input,
+  // which results in empty object and triggers the default, but
+  // when the user just leaves input blanc and presses OK - this will return an empty string,
+  // which does not trigger the default.
   if (useFormalName) {
     const sex = prompt(
       "Do you prefer to be called Lord or Lady (or any other title)? please enter below:"
@@ -37,7 +40,9 @@ function getEventWeekday(inNDays) {
   meetingDay.setDate(meetingDay.getDate() + inNDays);
   return meetingDay.toLocaleDateString("en-GB", { weekday: "long" });
 
-  //Alternatevely we could use the following formula: (today.getDay() + inNDays % 7) to know the meeting's weekday number in future, then populate array with weekday names and choose the right index for the day name remembering to substract 1 from future day number to map with the index numeration starting from 0;
+  //Alternatevely we could use the following formula: (today.getDay() + inNDays % 7)
+  //to know the meeting's weekday number in future,then populate array with
+  //weekday names and choose the right index with the index numeration starting from 0;
   //However .toLocaleDateString seems more elegant way.
 }
 alert(
@@ -126,6 +131,8 @@ function addCandy(candyType, weight) {
 }
 
 function canBuyMoreCandy(order, allowance) {
+  // Alternatively could have written: if (order.reduce((sum, current) => sum + current, 0) < allowance) { ... }
+  // this probably would work faster then the function I wrote...
   if (getTotalPrice(order) < allowance) {
     console.log("You can buy more, so please do!");
     return true;
