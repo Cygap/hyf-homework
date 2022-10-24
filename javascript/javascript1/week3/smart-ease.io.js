@@ -161,3 +161,90 @@ function findNotes(lookupValue) {
 }
 
 findNotes("gRoC");
+
+//Fifth task "CactusIO-interactive (Smart phone usage app)"
+
+const activities = [];
+const activityLimit = 90;
+
+/*Extra feature: date parser. Checks the custom format provided by the assignment condition "DD/MM-YY", 
+otherwise parses the date in usual format and if not, then puts current date to the date property of an object */
+function parseDate(dateStr) {
+  let date;
+
+  if (typeof dateStr === "string") {
+    const yearDelimiter = dateStr.indexOf("-");
+    const monthDelimiter = dateStr.indexOf("/");
+    if (yearDelimiter > -1 && monthDelimiter > -1) {
+      date = new Date(
+        20 + dateStr.substring(yearDelimiter + 1),
+        Number(dateStr.substring(monthDelimiter + 1, yearDelimiter) - 1),
+        Number(dateStr.substring(0, monthDelimiter))
+      );
+    } else {
+      date = Date.parse(dateStr);
+    }
+  }
+
+  if (!(date instanceof Date) || isNaN(date)) {
+    console.log("Wrong string format as date. Using today's date instead");
+    date = new Date();
+  }
+
+  return date;
+}
+
+function addActivity(appName, timeSpent, date = new Date()) {
+  activities.push({
+    date: parseDate(date),
+    activity: appName,
+    duration: timeSpent,
+  });
+}
+addActivity("Youtube", 30, "12312");
+addActivity("GitHub", 120);
+console.log(activities);
+
+function getTotalActivityDuration(activitiesToCalculate) {
+  for (const activity of activitiesToCalculate) {
+  }
+}
+
+function showStatus(date = new Date()) {
+  let total = 0;
+  let counter = 0;
+  date = parseDate(date);
+  for (const activity of activities) {
+    if (
+      activity.date.getFullYear() === date.getFullYear() &&
+      activity.date.getMonth() === date.getMonth() &&
+      activity.date.getDate() === date.getDate()
+    ) {
+      total += activity.duration;
+      counter++;
+    }
+  }
+  console.log(total);
+  if (activities.length > 0) {
+    console.log(
+      `For the ${date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })} you have added ${counter} activities. They amount of ${total} min. of usage`
+    );
+  } else {
+    console.log(
+      "You have not added anything.\n Add some activities before calling showStatus!"
+    );
+  }
+  if (total > activityLimit) {
+    console.log("You have reached your limit, no more smartphoning for you!");
+  }
+}
+showStatus();
+addActivity("Youtube", 40, "23/10-22");
+showStatus("23/10-22");
+addActivity("Facebook", 20, "24/10-22");
+showStatus();
+console.log(activities);
