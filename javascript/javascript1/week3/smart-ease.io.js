@@ -181,8 +181,8 @@ function parseDate(dateStr) {
         Number(dateStr.substring(monthDelimiter + 1, yearDelimiter) - 1),
         Number(dateStr.substring(0, monthDelimiter))
       );
-    } else {
-      date = Date.parse(dateStr);
+    } else if (!isNaN(Date.parse(dateStr))) {
+      date = new Date(Date.parse(dateStr));
     }
   }
 
@@ -201,9 +201,6 @@ function addActivity(appName, timeSpent, date = new Date()) {
     duration: timeSpent,
   });
 }
-addActivity("Youtube", 30, "12312");
-addActivity("GitHub", 120);
-console.log(activities);
 
 function getTotalActivityDuration(activitiesToCalculate) {
   for (const activity of activitiesToCalculate) {
@@ -214,24 +211,26 @@ function showStatus(date = new Date()) {
   let total = 0;
   let counter = 0;
   date = parseDate(date);
-  for (const activity of activities) {
+
+  total = activities.reduce((result, activity) => {
     if (
       activity.date.getFullYear() === date.getFullYear() &&
       activity.date.getMonth() === date.getMonth() &&
       activity.date.getDate() === date.getDate()
     ) {
-      total += activity.duration;
       counter++;
+      return result + activity.duration;
     }
-  }
-  console.log(total);
+    return result;
+  }, 0);
+
   if (activities.length > 0) {
     console.log(
       `For the ${date.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
-      })} you have added ${counter} activities. They amount of ${total} min. of usage`
+      })} you have added ${counter} activities for a total amount of ${total} min. of usage`
     );
   } else {
     console.log(
@@ -242,9 +241,30 @@ function showStatus(date = new Date()) {
     console.log("You have reached your limit, no more smartphoning for you!");
   }
 }
+
+addActivity("Youtube", 30, "kdsjjfakjas fkldsjg j");
+addActivity("GitHub", 120);
+console.log(activities);
+
 showStatus();
 addActivity("Youtube", 40, "23/10-22");
 showStatus("23/10-22");
 addActivity("Facebook", 20, "24/10-22");
-showStatus();
+addActivity("Slack", 11);
+showStatus("24 Oct 2022");
 console.log(activities);
+
+//last task of fifth assignment - function to find the findMaxDurationActivity () - ?
+function findMaxDurationActivity() {
+  return activities.reduce((result, activity) => {
+    const max = Math.max(Number(result.duration), Number(activity.duration));
+    if (result.duration === max) return result;
+    return activity;
+  });
+}
+
+console.log(
+  `Here is the activity with the maximal duration: ${JSON.stringify(
+    findMaxDurationActivity()
+  )}`
+);
