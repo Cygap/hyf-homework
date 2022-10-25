@@ -2,7 +2,7 @@
 const myFreeCodeCamp = "https://www.freecodecamp.org/sudar";
 
 //First task "Item array removal":
-
+console.log("________ First task ____________");
 const names = [
   "Peter",
   "Ahmad",
@@ -24,6 +24,7 @@ for (let i = 0; i < names.length; i++) {
 console.log(names);
 
 //Second task "When will we be there??"
+console.log("________ Second task ____________");
 
 const travelInformation = {
   speed: 50,
@@ -45,6 +46,7 @@ const travelTime = travelInformation.getTravelTime();
 console.log(travelTime);
 
 //Third task "Series duration of my life"
+console.log("________ Third task ____________");
 
 const seriesDurations = [
   {
@@ -105,7 +107,7 @@ function logOutSeriesText() {
 logOutSeriesText();
 
 //Fourth task "NOnoN0nOYes (Note taking app)"
-
+console.log("________ Fourth task ____________");
 const notes = [];
 
 function saveNote(content, id) {
@@ -163,6 +165,7 @@ function findNotes(lookupValue) {
 findNotes("gRoC");
 
 //Fifth task "CactusIO-interactive (Smart phone usage app)"
+console.log("________ Fifth task ____________");
 
 const activities = [];
 const activityLimit = 90;
@@ -257,7 +260,7 @@ console.log(activities);
 //last task of fifth assignment - function to find the findMaxDurationActivity () - ?
 function findMaxDurationActivity() {
   return activities.reduce((result, activity) => {
-    const max = Math.max(Number(result.duration), Number(activity.duration));
+    const max = Math.max(result.duration, activity.duration);
     if (result.duration === max) return result;
     return activity;
   });
