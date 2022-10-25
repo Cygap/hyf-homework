@@ -259,11 +259,9 @@ console.log(activities);
 
 //last task of fifth assignment - function to find the findMaxDurationActivity () - ?
 function findMaxDurationActivity() {
-  return activities.reduce((result, activity) => {
-    const max = Math.max(result.duration, activity.duration);
-    if (result.duration === max) return result;
-    return activity;
-  });
+  return activities.reduce((result, activity) =>
+    result.duration < activity.duration ? activity : result
+  );
 }
 
 console.log(
