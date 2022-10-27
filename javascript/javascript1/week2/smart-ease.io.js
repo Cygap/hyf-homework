@@ -172,13 +172,10 @@ const amountToSpend = Math.floor(Math.random() * 100);
 console.log(`You can buy candies for ${amountToSpend} credits`);
 
 function addCandy(candyType, weight) {
-  boughtCandyPrices.push(Number((candyPrice[candyType] * weight).toFixed(3)));
+  let currentPrice = Number((candyPrice[candyType] * weight).toFixed(3));
+  boughtCandyPrices.push(currentPrice);
   console.log(
-    `Your order is: ${boughtCandyPrices}. The last addition is ${weight} grams of ${candyType} for ${
-      candyPrice[candyType]
-    } per gram, in total we added: ${
-      candyPrice[candyType] * weight
-    } to your order`
+    `Your order is: ${boughtCandyPrices}. The last addition is ${weight} grams of ${candyType} for ${candyPrice[candyType]} per gram, in total we added: ${currentPrice} to your order`
   );
 }
 
