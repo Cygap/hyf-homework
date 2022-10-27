@@ -73,7 +73,7 @@ alert(
 }*/
 //Decided to rewrite conditions using if for better readability:
 
-function shouldWear(temp) {
+/*function shouldWear(temp) {
   if (temp < -60) {
     return "spacesuit";
   } else if (temp < -30) {
@@ -92,6 +92,34 @@ function shouldWear(temp) {
     return "thawb and kufiyah";
   } else {
     return "spacesuite";
+  }
+}*/
+
+//Other variant to implement the task, using Switch/case
+
+//Cool that it works without break - we may use return instead to break not only the switch block, but the function block itself.
+function shouldWear(temp) {
+  switch (true) {
+    case temp < -60:
+      return "spacesuit";
+    case temp < -30:
+      return "Arctic Expedition & Polar Clothing";
+    case temp < -10:
+      return "Warm jacket and pair of good trousers";
+    case temp < 0:
+      return "Jacket and pants";
+    case temp < 10:
+      return "a parka, biker jacket or leather jacket";
+    case temp < 20:
+      return "Hoodie and jeans";
+    case temp < 30:
+      return "T-shirt and shorts";
+    case temp < 50:
+      return "thawb and kufiyah";
+    case temp >= 50:
+      return "spacesuite";
+    default:
+      return "Strange temperature...";
   }
 }
 
