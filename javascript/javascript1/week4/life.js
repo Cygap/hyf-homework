@@ -1,20 +1,12 @@
 // Game of life
 
-// let field = [
-//   [1, 0, 0, 1, 1],
-//   [1, 1, 1, 0, 1],
-//   [0, 0, 0, 0, 1],
-//   [0, 1, 0, 1, 1],
-//   [0, 1, 0, 0, 0],
-// ];
-const fieldSizeX = 5,
-  fieldSizeY = 5;
+const fieldSizeX = 7,
+  fieldSizeY = 7;
 
 class LifeCell {
-  constructor(x, y) {
+  constructor() {
     this.value = Number(Math.random().toFixed(0));
-    this.x = x;
-    this.y = y;
+
     this.lives = this.value;
   }
   update() {
@@ -27,7 +19,7 @@ let field = new Array(fieldSizeY);
 for (let j = 0; j < fieldSizeY; j++) {
   field[j] = new Array(fieldSizeX);
   for (let i = 0; i < fieldSizeX; i++) {
-    field[j][i] = new LifeCell(i, j);
+    field[j][i] = new LifeCell();
   }
 }
 
@@ -50,7 +42,6 @@ while (confirm("Next step?")) {
   for (let j = 0; j < field.length; j++) {
     for (let i = 0; i < field[j].length; i++) {
       neighbours = 0;
-      // console.log(`i = ${i}; j = ${j}`);
       for (
         let x = i === 0 ? 0 : i - 1;
         x <= (i + 1 > field.length - 1 ? field.length - 1 : i + 1);
@@ -61,13 +52,12 @@ while (confirm("Next step?")) {
           y <= (j + 1 > field[i].length - 1 ? field[i].length - 1 : j + 1);
           y++
         ) {
-          // console.log(`x = ${x}; y = ${y}; value = ${field[y][x].value}`);
           neighbours += field[y][x].value;
         }
       }
 
       neighbours -= field[j][i].value;
-      //console.log(`for element ${i} ${j} sum of neighbours = ${neighbours}`);
+
       if (field[j][i].value) {
         if (neighbours > 3 || neighbours < 2) field[j][i].lives = 0;
       } else {
