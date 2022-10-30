@@ -15,13 +15,12 @@ const user = {
 };
 function getReply(command) {
   let knownCommand = false;
-  console.log(Object.keys(assistant));
+
   for (let key of Object.keys(assistant)) {
-    console.log(key);
     if (command.includes(key)) {
       console.log(assistant[key]);
       knownCommand = true;
-      return assistant[key];
+      return assistant[key](command);
     }
   }
   if (!knownCommand) console.log("Command not known :(");
