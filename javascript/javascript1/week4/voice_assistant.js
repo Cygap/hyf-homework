@@ -86,6 +86,25 @@ function timer(command, amount, typeOfTime) {
   }, ms);
 }
 
+function calc(command, a, operator, b) {
+  let result = 0;
+  switch (operator) {
+    case "-":
+      result = a - b;
+      break;
+    case "+":
+      result = a + b;
+      break;
+    case "*":
+      result = a * b;
+      break;
+    case "/":
+      result = a / b;
+  }
+
+  console.log(`${command} is ${result}`);
+}
+
 const assistant = new Map([
   [/my\s+name\s+is\s+(\w+)/i, newName],
   [/is\s+my\s+name\s*(\w+)?/i, findName],
@@ -97,7 +116,7 @@ const assistant = new Map([
     /timer\s+for\s+(\d+(?:\.\d+)?)\s*(hour(?:s)?|minute(?:s)?|second(?:s)?)/i,
     timer,
   ],
-  [/(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/, "Calculator"],
+  [/(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/, calc],
 ]);
 
 function getReply(command) {
@@ -112,7 +131,6 @@ function getReply(command) {
   if (!knownCommand) console.log("Command not known :(");
 }
 
-// getReply("what is 2.25    *    -1.2");
 getReply("Hi! my name is   Alex");
 getReply("IS MY NAME alex?");
 getReply("add pick kids up from school and kindergarden to my todo");
@@ -124,3 +142,4 @@ getReply("remove fishing from    my todO!");
 getReply("Now my name is George");
 getReply("What day is it today?");
 getReply("Set a timer for 5 seconds");
+getReply("what is 2.25    *    -1.2");
