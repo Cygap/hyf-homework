@@ -3,66 +3,58 @@ const user = {
   toDo: [],
 };
 
+let weather = "";
 function newName(command, name) {
+  let result = "";
   if (user.name === "") {
-    console.log(`Nice to meet you, ${name}`);
+    result = `Nice to meet you, ${name}`;
   } else {
-    console.log(
-      `You told me, that your name was "${user.name}" \nMaybe you or I have mistaken... (you couldn't be lying to me....)\nCnahging your name to ${name}`
-    );
+    result = `You told me, that your name was "${user.name}" \nMaybe you or I have mistaken... (you couldn't be lying to me....)\nCnahging your name to ${name}`;
   }
   user.name = name;
+  return result;
 }
 
 function findName(command, name) {
   if (user.name === "") {
-    console.log("You haven't introduced yourself yet!\n");
-    getReply(prompt("Please, introduce yourself:"));
+    alert("You haven't introduced yourself yet!\n");
+    return getReply(prompt("Please, introduce yourself:"));
   } else {
-    console.log(`Your name is ${user.name}`);
+    return `Your name is ${user.name}`;
   }
 }
 
 function addToDo(command, activity) {
   user.toDo.push(activity);
-  console.log(`Added task "${activity}" to your todo list`);
+  return `Added task "${activity}" to your todo list`;
 }
 
 function removeToDo(command, activity) {
   if (user.toDo.length) {
     const item = user.toDo.indexOf(activity);
     if (item === -1) {
-      console.log(
-        `Cannot delete anything, your todo doesn't have a task called: "${activity}"`
-      );
+      return `Cannot delete anything, your todo doesn't have a task called: "${activity}"`;
     } else {
-      console.log(
-        `Removed "${user.toDo.splice(item, 1)}" task from your todo list`
-      );
+      return `Removed "${user.toDo.splice(item, 1)}" task from your todo list`;
     }
-  } else
-    console.log("Cannot delete anything, your todo list is already empty!");
+  } else return "Cannot delete anything, your todo list is already empty!";
 }
 
 function displayToDo(command) {
   if (user.toDo.length) {
-    console.log(`Your todo list:\n${user.toDo.join("\n")}`);
+    return `Your todo list:\n${user.toDo.join("\n")}`;
   } else
-    console.log(
-      "Good job! Your todo list is already empty! Everything is done!"
-    );
+    return "Good job! Your todo list is already empty! Everything is done!";
 }
 
 function todayName() {
   const today = new Date();
-  console.log(
-    `Today is ${today.toLocaleDateString("en-GB", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })}`
-  );
+  return `Today is ${today.toLocaleDateString("en-GB", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })}`;
 }
 
 function timer(command, amount, typeOfTime) {
@@ -80,10 +72,11 @@ function timer(command, amount, typeOfTime) {
     case "seconds":
       ms *= amount;
   }
-  alert(`Timer set for ${amount} ${typeOfTime}(s) milliseconds: ${ms}`);
+
   setTimeout(() => {
     alert("Time is up!");
   }, ms);
+  return `Timer set for ${amount} ${typeOfTime}(s) milliseconds: ${ms}`;
 }
 
 function calc(command, a, operator, b) {
@@ -102,9 +95,32 @@ function calc(command, a, operator, b) {
       result = a / b;
   }
 
-  console.log(`${command} is ${result}`);
+  return `${command} is ${result}`;
   /*do not use eval(command), because I've read somewhere that it is on the dark side of the Force.
   console.log(`${command} is ${eval(command)}`);*/
+}
+
+function getWeather() {
+  let result;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "af35d9bda9msh1d5d601753355fcp1d5ca1jsnc37e78a50099",
+      "X-RapidAPI-Host": "yahoo-weather5.p.rapidapi.com",
+    },
+  };
+
+  result = fetch(
+    "https://yahoo-weather5.p.rapidapi.com/weather?location=Copenhagen&format=json&u=c",
+    options
+  )
+    .then((response) => response.json())
+    .then(
+      (response) =>
+        (weather = `Today's weather in Copenhagen is ${response.current_observation.condition.text} and the temperature is ${response.current_observation.condition.temperature} degrees C`)
+    )
+    .catch((err) => console.error(err));
+  return result; //Cannot figure out, how to adapt Promises mechanics to logging Promise results to console...
 }
 
 const assistant = new Map([
@@ -119,6 +135,7 @@ const assistant = new Map([
     timer,
   ],
   [/(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/, calc],
+  [/weather/i, getWeather], //Additional feature - today's weather, fetching from YahooWeather.
 ]);
 
 function getReply(command) {
@@ -133,15 +150,22 @@ function getReply(command) {
   if (!knownCommand) console.log("Command not known :(");
 }
 
-getReply("Hi! my name is   Alex");
-getReply("IS MY NAME alex?");
-getReply("add pick kids up from school and kindergarden to my todo");
-getReply("remove fishing from    my todO!");
-getReply("What is on my todo?");
-getReply("remove pick kids up from school and kindergarden from my todo");
-getReply("remove fishing from    my todO!");
+console.log(getReply("Hi! my name is   Alex"));
 
-getReply("Now my name is George");
-getReply("What day is it today?");
-getReply("Set a timer for 5 seconds");
-getReply("what is 2.25    *    -1.2");
+console.log(getReply("IS MY NAME alex?"));
+console.log(
+  getReply("add pick kids up from school and kindergarden to my todo")
+);
+console.log(getReply("remove fishing from    my todO!"));
+console.log(getReply("What is on my todo?"));
+console.log(
+  getReply("remove pick kids up from school and kindergarden from my todo")
+);
+console.log(getReply("remove fishing from    my todO!"));
+
+console.log(getReply("Now my name is George"));
+console.log(getReply("What day is it today?"));
+console.log(getReply("Set a timer for 5 seconds"));
+console.log(getReply("what is 2.25    *    -1.2"));
+
+console.log(getReply("What is the weather like?"));
