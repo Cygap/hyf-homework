@@ -103,6 +103,8 @@ function calc(command, a, operator, b) {
   }
 
   console.log(`${command} is ${result}`);
+  /*do not use eval(command), because I've read somewhere that it is on the dark side of the Force.
+  console.log(`${command} is ${eval(command)}`);*/
 }
 
 const assistant = new Map([
@@ -138,7 +140,7 @@ getReply("remove fishing from    my todO!");
 getReply("What is on my todo?");
 getReply("remove pick kids up from school and kindergarden from my todo");
 getReply("remove fishing from    my todO!");
-// getReply("Set my timer for 5 hours!");
+
 getReply("Now my name is George");
 getReply("What day is it today?");
 getReply("Set a timer for 5 seconds");
