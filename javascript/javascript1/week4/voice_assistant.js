@@ -3,7 +3,6 @@ const user = {
   toDo: [],
 };
 
-let weather = "";
 function newName(command, name) {
   let result = "";
   if (user.name === "") {
@@ -115,12 +114,13 @@ function getWeather() {
     options
   )
     .then((response) => response.json())
-    .then(
-      (response) =>
-        (weather = `Today's weather in Copenhagen is ${response.current_observation.condition.text} and the temperature is ${response.current_observation.condition.temperature} degrees C`)
+    .then((response) =>
+      console.log(
+        `Ah... weather... So, today's weather in Copenhagen is ${response.current_observation.condition.text} and the temperature is ${response.current_observation.condition.temperature} degrees C`
+      )
     )
     .catch((err) => console.error(err));
-  return result; //Cannot figure out, how to adapt Promises mechanics to logging Promise results to console...
+  return "The weather... let me check..."; //Cannot figure out, how to adapt Promises mechanics to logging Promise results to console...
 }
 
 const assistant = new Map([
