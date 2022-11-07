@@ -48,10 +48,14 @@ function getSpiritAnimal(animals, spirits) {
 }
 
 function renderSpiritAnimal() {
-  button.innerHTML = `${input.value} - The ${getSpiritAnimal(
-    animals,
-    spirits
-  )}.`;
+  const spiritAnimal = getSpiritAnimal(animals, spirits);
+  if (input.value) {
+    button.innerHTML = `${input.value} - The ${spiritAnimal}.`;
+  } else {
+    button.innerHTML = `Unknown warrior - The ${spiritAnimal}.`;
+  }
 }
 
 button.onclick = renderSpiritAnimal;
+input.onmouseover = renderSpiritAnimal;
+input.oninput = renderSpiritAnimal;
