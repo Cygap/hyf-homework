@@ -100,7 +100,6 @@ function calc(command, a, operator, b) {
 }
 
 function getWeather() {
-  let result;
   const options = {
     method: "GET",
     headers: {
@@ -109,7 +108,7 @@ function getWeather() {
     },
   };
 
-  result = fetch(
+  fetch(
     "https://yahoo-weather5.p.rapidapi.com/weather?location=Copenhagen&format=json&u=c",
     options
   )
