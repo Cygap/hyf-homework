@@ -50,12 +50,25 @@ function getSpiritAnimal(animals, spirits) {
 function renderSpiritAnimal() {
   const spiritAnimal = getSpiritAnimal(animals, spirits);
   if (input.value) {
-    button.innerHTML = `${input.value} - The ${spiritAnimal}.`;
+    button.textContent = `${input.value} - The ${spiritAnimal}.`;
   } else {
-    button.innerHTML = `Unknown warrior - The ${spiritAnimal}.`;
+    button.textContent = `Unknown warrior - The ${spiritAnimal}.`;
   }
 }
+function radioChange(event) {
+  button.removeEventListener("click", renderSpiritAnimal);
+  input.removeEventListener("mouseover", renderSpiritAnimal);
+  input.removeEventListener("input", renderSpiritAnimal);
+  console.dir(event.target.value);
+  if (event.target.value === "click") {
+    button.addEventListener(event.target.value, renderSpiritAnimal);
+  } else {
+    input.addEventListener(event.target.value, renderSpiritAnimal);
+  }
+}
+const options = document.querySelectorAll("input[type='radio']");
+for (let option of options) {
+  option.addEventListener("change", radioChange);
+}
 
-button.onclick = renderSpiritAnimal;
-input.onmouseover = renderSpiritAnimal;
-input.oninput = renderSpiritAnimal;
+button.addEventListener("click", renderSpiritAnimal);
