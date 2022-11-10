@@ -1,4 +1,9 @@
 const danishWords = ["bil", "plante", "kaffe", "bog", "ø", "planetarium"];
+/**
+ *
+ * @param {array} wordsArray array of input words.
+ * @returns {string} first element of sorted input array
+ */
 function findShortest(wordsArray) {
   wordsArray.sort((wordA, wordB) => wordA.length - wordB.length);
   return wordsArray[0];
@@ -12,20 +17,20 @@ renderedResult.innerText = `the shortest word is "${findShortest(
 )}"`;
 section.append(display, renderedResult);
 
+/**
+ *
+ * @param {string} string of words in Danish to count Danish-specific letter into.
+ * @returns {object} result containing danish letters as keys and total count of all danish letters.
+ */
 function countDanishLetters(string) {
-  const result = {};
-  let total = 0;
+  const result = { total: 0 };
+
   for (let char of string) {
     if (char.match(/[åøæ]/i)) {
-      total++;
-      if (result[char]) {
-        result[char]++;
-      } else {
-        result[char] = 1;
-      }
+      result.total++;
+      result[char] ? (result[char] += 1) : (result[char] = 1);
     }
   }
-  result["total"] = total;
   return result;
 }
 const secondDisplay = document.createElement("div");
