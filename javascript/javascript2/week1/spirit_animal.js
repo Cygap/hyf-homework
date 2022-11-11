@@ -40,13 +40,20 @@ const spirits = [
   "burro",
   "hamster",
 ];
-
+/**
+ * Generates a random pair of words to describe Spirit Animal
+ * @param {array} animals - an array of animal kinds to choose from
+ * @param {array} spirits - an array of animal characteristics (qualities) to choose from
+ * @returns {string} string of randomly generated pairs of words
+ */
 function getSpiritAnimal(animals, spirits) {
   return `${animals[Math.floor(animals.length * Math.random())]} ${
     spirits[Math.floor(spirits.length * Math.random())]
   }`;
 }
-
+/**
+ * Displays the text inside the button, checks, whether username was entered.
+ */
 function renderSpiritAnimal() {
   const spiritAnimal = getSpiritAnimal(animals, spirits);
   if (input.value) {
@@ -55,9 +62,15 @@ function renderSpiritAnimal() {
     button.textContent = `Unknown warrior - The ${spiritAnimal}.`;
   }
 }
+
+/**
+ * Removes previousely added listeners, to allow for radio button mechanics to work properly.
+ * then adds new event listener depending on the option selected and its value.
+ * @param {event} event
+ */
 function radioChange(event) {
   button.removeEventListener("click", renderSpiritAnimal);
-  input.removeEventListener("mousemove", renderSpiritAnimal);
+  input.removeEventListener("pointeremove", renderSpiritAnimal);
   input.removeEventListener("input", renderSpiritAnimal);
 
   if (event.target.value === "click") {
