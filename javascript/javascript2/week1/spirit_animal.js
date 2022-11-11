@@ -71,7 +71,7 @@ function renderSpiritAnimal() {
 function radioChange(event) {
   button.removeEventListener("click", renderSpiritAnimal);
   input.removeEventListener("pointermove", renderSpiritAnimal);
-  input.removeEventListener("input", renderSpiritAnimal);
+  input.removeEventListener("change", renderSpiritAnimal);
 
   if (event.target.value === "click") {
     button.addEventListener(event.target.value, renderSpiritAnimal);
