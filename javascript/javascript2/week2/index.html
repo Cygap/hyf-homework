@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript2-week2 hyfBay task</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,800"
+      rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/aec8d9e930.js"
+      crossorigin="anonymous"></script>
+    <!-- getting the icons from font awesome -->
+  </head>
+  <body>
+    <h1>JavaScript2 week2 Homework ... continued</h1>
+    <div class="wrapper">
+      <div id="hyfBay">
+        <h2>hyfBay</h2>
+        <form action="" method="get" id="list-controls">
+          <label for="filter"
+            ><i class="fa-solid fa-magnifying-glass"></i
+            ><input type="text" placeholder="enter product name" id="filter"
+          /></label>
+          <label for="price-filter"
+            ><i class="fa-solid fa-hand-holding-dollar"></i
+            ><input
+              type="number"
+              placeholder="enter max price"
+              id="price-filter"
+          /></label>
+          <select id="sorter" name="sort-options">
+            <option selected>No sorting</option>
+          </select>
+          <span>Ascending/Descending</span>
+          <label class="switch" id="sort-order">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </form>
+        <ul id="hyf-products"></ul>
+        <script src="./hyfBayHelpers.js"></script>
+        <script src="./main.js"></script>
+      </div>
+    </div>
+  </body>
+</html>
