@@ -3,10 +3,13 @@ console.log("Script loaded");
 const products = getAvailableProducts();
 console.log(products);
 const list = document.querySelector("ul");
+
 /** Function to show the product list on the page.
  * @param {array} products Array of products, created with hyfBayHelpers.js
+ * clears all previous contents from the list.
  */
 function renderProducts(products) {
+  list.innerHTML = "";
   for (const product of products) {
     let item = document.createElement("li");
     item.innerHTML = `<h3>${product.name}</h3>
@@ -16,19 +19,22 @@ function renderProducts(products) {
   }
 }
 renderProducts(products);
+
 const filter = document.querySelector("#filter");
 filter.addEventListener("input", filterProducts);
-
+/**
+ * filters the array of products, but works only when user has more than 2 characters in input
+ * also checks if the user deleted the input contents some how. If so, then it refreshes the list of products to initial state.
+ * @param {event} e
+ */
 function filterProducts(e) {
   if (e.target.value.length > 2) {
-    list.innerHTML = "";
     renderProducts(
       products.filter((product) =>
         product.name.toLowerCase().includes(e.target.value.toLowerCase())
       )
     );
   } else if (e.inputType.includes("delete")) {
-    list.innerHTML = "";
     renderProducts(products);
   }
 }
@@ -36,9 +42,13 @@ function filterProducts(e) {
 const priceFilter = document.getElementById("price-filter");
 priceFilter.addEventListener("input", filterByPrice);
 
+/**
+ * filters the array of products. allows only those products, which cost less then maximal price in user input.
+ * also checks if the user deleted the values from input. In that case refreshes the list of products to initial state.
+ * @param {event} e
+ */
 function filterByPrice(e) {
   if (e.target.value) {
-    list.innerHTML = "";
     renderProducts(
       products.filter((product) => product.price <= e.target.value)
     );
@@ -48,20 +58,34 @@ function filterByPrice(e) {
 }
 
 const sorter = document.getElementById("sorter");
+/**
+ * sorting Map - the map is used in order to iterate the object properties. If we have more sort options in future, their addition will be easier.
+ * the value defines the ascending (true) or descending (false) sorting order.
+ * "additional feature"
+ */
 const sortOptions = new Map([
   ["name", true],
   ["rating", true],
   ["price", true],
 ]);
+/**
+ * populating select element with options.
+ */
 sortOptions.forEach((value, key) => {
   sorter.append(document.createElement("option"));
   sorter.lastChild.innerText = key;
 });
 
 sorter.addEventListener("change", sortProducts);
+
+/**
+ * sorts products according to the options selected in sorter select element.
+ * takes into account sorting order.
+ * @param {event} e
+ */
 function sortProducts(e) {
   const sortOrder = sortOptions.get(e.target.value) ? 1 : -1;
-  list.innerHTML = "";
+
   renderProducts(
     products.sort((prev, next) =>
       prev[e.target.value] > next[e.target.value] ? sortOrder : -sortOrder
@@ -72,7 +96,15 @@ document
   .getElementById("sort-order")
   .addEventListener("change", changeSortOrder);
 
+/**
+ * Listens to the sort order switch and inverts the value of the sorter Map.
+ * Then initiates sorting procedure by dispatching an event on the "select" element.
+ * @param {event} e
+ */
+
 function changeSortOrder(e) {
   sortOptions.set(sorter.value, !sortOptions.get(sorter.value));
   console.dir(sortOptions);
+
+  sorter.dispatchEvent(new Event("change"));
 }
