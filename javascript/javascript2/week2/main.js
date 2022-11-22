@@ -6,6 +6,7 @@ console.log(products);
 const list = document.querySelector("ul");
 
 /** Function to show the product list on the page.
+ * additionally sets some properties to each item to allow for selection, tab focusing and price calculation.
  * @param {array} products Array of products, created with hyfBayHelpers.js
  * clears all previous contents from the list.
  */
@@ -16,10 +17,35 @@ function renderProducts(products) {
     item.innerHTML = `<h3>${product.name}</h3>
     <div>price: ${product.price}</div>
     <div>Rating ${product.rating}</div>`;
+    item.classList.add("item");
+    item.tabIndex = 10 + products.indexOf(product);
+    item.price = product.price;
     list.append(item);
   }
 }
+
 renderProducts(products);
+
+const totalSum = document.querySelector("#total-sum");
+let totalSumValue = 0;
+/**
+ * Changes the styles of a product and adds/substract its price from total depending on previous styles class.
+ * @param {event} e
+ */
+function selectProduct(e) {
+  const product = e.path.find((element) => element.classList.contains("item"));
+  if (product && (e.type === "click" || e.code === "Space")) {
+    totalSumValue =
+      totalSumValue +
+      (product.classList.contains("selected") ? -product.price : product.price);
+
+    product.classList.toggle("selected");
+    totalSum.innerText = totalSumValue;
+  }
+}
+
+list.addEventListener("click", selectProduct);
+list.addEventListener("keypress", selectProduct);
 
 const filter = document.querySelector("#filter");
 filter.addEventListener("input", filterProducts);
@@ -67,7 +93,7 @@ const sorter = document.getElementById("sorter");
 const sortOptions = new Map([
   ["name", true],
   ["rating", true],
-  ["price", true],
+  ["price", true]
 ]);
 /**
  * populating select element with options.

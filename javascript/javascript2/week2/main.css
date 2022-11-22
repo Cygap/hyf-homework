@@ -33,7 +33,9 @@ ul {
   gap: 2rem 1rem;
   justify-content: space-between;
 }
-
+.selected {
+  background-color: #234567;
+}
 li {
   padding: 1rem;
   border: solid 0.1rem;
