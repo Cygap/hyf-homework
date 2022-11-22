@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/" method="get">
+      <!-- type, facilities, price , hasGarden and size -->
+      <select name="type" id="type"></select>
+      <select name="facilities" id="facilities" multiple></select>
+      <input
+        type="text"
+        name="minPrice"
+        id="min-price"
+        placeholder="min price" />
+      <input
+        type="text"
+        name="maxPrice"
+        id="max-price"
+        placeholder="max price" />
+      <label for="has-garden"
+        ><input type="checkbox" name="hasGarden" id="has-garden" />Has
+        garden</label
+      >
+      <input type="text" name="minSize" id="min-size" placeholder="min size" />
+      <input type="text" name="maxSize" id="max-size" placeholder="max size" />
+    </form>
+    <script src="./script.js"></script>
+  </body>
+</html>
