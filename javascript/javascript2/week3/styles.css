@@ -1,0 +1,46 @@
+body {
+  text-align: center;
+}
+#confetti-holder {
+  position: fixed;
+}
+.player {
+  background-color: transparent;
+  width: 40%;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid black 1px;
+  padding: 1rem;
+}
+.player span {
+  text-align: center;
+}
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+#player-two {
+  border-left: none;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+form {
+  width: 40%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: auto auto 2rem auto;
+}
+#start {
+  background-color: aquamarine;
+  border: none;
+  box-shadow: 0 0 100 0.1em #03271f;
+}
