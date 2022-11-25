@@ -27,7 +27,8 @@ body {
 }
 h1 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 form {
@@ -37,10 +38,30 @@ form {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin: auto auto 2rem auto;
+  margin: auto auto 1rem auto;
 }
 #start {
-  background-color: aquamarine;
+  background-color: darkseagreen;
   border: none;
-  box-shadow: 0 0 100 0.1em #03271f;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 0.2em #03271f;
+}
+
+#timer {
+  border-radius: 1rem;
+  box-shadow: 0 0 5px 0.1em #03271f;
+}
+
+#send-to-player {
+  position: fixed;
+  display: none;
+  font-size: 0.3rem;
+  background-color: antiquewhite;
+  z-index: 12;
+  border-radius: 1rem;
+  padding: 0.3rem;
+}
+#bomb {
+  font-size: large;
+  color: darkseagreen;
 }
