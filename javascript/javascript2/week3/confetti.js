@@ -1,5 +1,19 @@
-window.ConfettiGenerator = function (e) {
-  var t = {
+/**
+ * @module confetti.js
+ * exports what seem to be constructor function with two returned functions
+ * to start and clear the confetti.
+ */
+
+/**
+ * Got this code from https://www.npmjs.com/package/confetti-js and changed it a little
+ * to be imported as a module. Also changed "var" to "let" in the text. Didn't spent much time
+ * to discover all the details of the code. Maybe it should be modernized further: use classes,
+ * rename variables, check for errors etc.
+ * @param {object} e - object with confetti settings
+ * @returns {object}
+ */
+export default function ConfettiGenerator(e) {
+  let t = {
     target: "confetti-holder",
     max: 80,
     size: 1,
@@ -26,16 +40,16 @@ window.ConfettiGenerator = function (e) {
     e.clock && (t.clock = e.clock),
     e.width && (t.width = e.width),
     e.height && (t.height = e.height));
-  var i = document.getElementById(t.target),
+  let i = document.getElementById(t.target),
     a = i.getContext("2d"),
     r = [];
   function o(e, t) {
     e || (e = 1);
-    var i = Math.random() * e;
+    let i = Math.random() * e;
     return t ? Math.floor(i) : i;
   }
   function n(e) {
-    var i = e.radius <= 3 ? 0.4 : 0.8;
+    let i = e.radius <= 3 ? 0.4 : 0.8;
     switch (
       ((a.fillStyle = a.strokeStyle = "rgba(" + e.color + ", " + i + ")"),
       a.beginPath(),
@@ -70,7 +84,7 @@ window.ConfettiGenerator = function (e) {
   return {
     render: function () {
       (i.width = t.width), (i.height = t.height), (r = []);
-      for (var e = 0; e < t.max; e++)
+      for (let e = 0; e < t.max; e++)
         r.push({
           prop: t.props[o(t.props.length, !0)],
           x: o(t.width),
@@ -83,10 +97,10 @@ window.ConfettiGenerator = function (e) {
           speed: o(t.clock / 7) + t.clock / 30
         });
       return (function e() {
-        for (var i in (a.clearRect(0, 0, t.width, t.height), r)) n(r[i]);
+        for (let i in (a.clearRect(0, 0, t.width, t.height), r)) n(r[i]);
         !(function () {
-          for (var e = 0; e < t.max; e++) {
-            var i = r[e];
+          for (let e = 0; e < t.max; e++) {
+            let i = r[e];
             t.animate && (i.y += i.speed),
               i.y > t.height &&
                 ((r[e] = i), (r[e].x = o(t.width, !0)), (r[e].y = -10));
@@ -100,9 +114,9 @@ window.ConfettiGenerator = function (e) {
         clearInterval(t.interval),
         requestAnimationFrame(function () {
           a.clearRect(0, 0, i.width, i.height);
-          var e = i.width;
+          let e = i.width;
           (i.width = 1), (i.width = e);
         });
     }
   };
-};
+}

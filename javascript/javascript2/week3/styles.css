@@ -6,8 +6,8 @@ body {
 }
 .player {
   background-color: transparent;
-  width: 40%;
-  height: 10rem;
+  width: 30%;
+  height: 7rem;
   display: flex;
   justify-content: center;
   align-items: center;

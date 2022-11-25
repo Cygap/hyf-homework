@@ -1,3 +1,8 @@
+"use strict";
+import ConfettiGenerator from "./confetti.js";
+/**
+ * Setting up the DOM elements, required to animate the game
+ */
 const startButton = document.getElementById("start");
 const durationInput = document.getElementById("timer");
 const playerOneField = document.getElementById("player-one");
@@ -5,12 +10,22 @@ const playerTwoField = document.getElementById("player-two");
 let countDownId;
 document.querySelector("form");
 startButton.addEventListener("click", gameStart);
-
+/**
+ * Generates a random integer number between minimal and maximum values
+ * @param {number} min - lower limit for the random number
+ * @param {number} max - upper limit for the random number
+ * @returns {number} random number >= min && <= max
+ */
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+/**
+ * Launches the game, sets up eventListeners and count-down timer
+ * @param {event} e - click on the start button.
+ */
 function gameStart(e) {
   e.preventDefault();
   const gameDuration = durationInput.value * 1000;
@@ -23,9 +38,17 @@ function gameStart(e) {
     countDownId = setInterval(countDown, 10, gameDuration);
   }
 }
+
+/**
+ * Setting up the elements for the bonus feature of the game
+ */
 const bombHint = document.getElementById("send-to-player");
 const bomb = document.getElementById("bomb");
-
+/**
+ * Shows the count-down timer inside the start button.
+ * Also displays the hint of how one plllayer can "bomb"(or benefit) the other.
+ * @param {number} time - initial amount of milliseconds during which the game should last.
+ */
 function countDown(time) {
   if (isNaN(Number(startButton.innerText))) {
     startButton.innerText = time / 1000;
@@ -46,11 +69,18 @@ function countDown(time) {
   }
 }
 
+/**
+ * preparing elements to display the winner
+ */
 const confettiElement = document.getElementById("confetti-holder");
 confettiElement.style.zIndex = "0";
 playerOneField.style.zIndex = "10";
 playerTwoField.style.zIndex = "10";
 
+/**
+ * Defines, which player won (or if there is draw). Hides "bomb" hint.
+ * Calls function to render the decorations for the winning player.
+ */
 function getWinner() {
   window.removeEventListener("keypress", addScore);
   clearInterval(countDownId);
@@ -64,6 +94,12 @@ function getWinner() {
   }
 }
 
+/**
+ * Congratulates the winnig player and decorate the winner's div with confetti.
+ * @param {element} winner - the div, containing the score of the winner,
+ * or null in a case of draw.
+ * @returns {undefined}
+ */
 function renderWinner(winner) {
   startButton.innerText = "Start new game!";
   if (!winner) {
@@ -100,6 +136,12 @@ function renderWinner(winner) {
   confetti.render();
   setTimeout(confetti.clear, 3000);
 }
+
+/**
+ * Changes relevant player's score in a current match depending on
+ * the key pressed.
+ * @param {event} e - keypress event by either player
+ */
 
 function addScore(e) {
   switch (e.code) {
