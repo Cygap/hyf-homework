@@ -27,4 +27,34 @@ function renderWeather(forecast) {
   ).toLocaleTimeString()} and sets at ${new Date(
     forecast.sys.sunset * 1000
   ).toLocaleTimeString()}</p>`;
+
+  let script = document.createElement("script");
+  script.src =
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyCQKWxWUcyoZgMmTA50PtbWdZ_GGme3NeY&callback=initMap";
+  script.async = true;
+
+  // Attach your callback function to the `window` object
+
+  // Append the 'script' element to 'head'
+  document.head.appendChild(script);
+  renderCoordinates();
+}
+window.initMap = function () {
+  console.log("Google map JS API is loaded and available");
+};
+let map;
+function renderCoordinates() {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        },
+        zoom: 12
+      });
+    },
+    () =>
+      (coordinates.innerText = `don't have your permission to read location`)
+  );
 }
