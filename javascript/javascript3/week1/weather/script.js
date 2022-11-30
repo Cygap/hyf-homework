@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Setting up API and elements to get input; Setting up hendlers to catch values and render forecast.
  */
