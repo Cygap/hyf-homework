@@ -8,8 +8,18 @@
     <title>Weather conditions</title>
   </head>
   <body>
-    <img src="" alt="" id="weather-icon" />
-    <div id="map"></div>
+    <div id="wrapper">
+      <form action="/" id="user-location">
+        <input type="text" id="city" placeholder="Enter your city name" />
+        <button id="get-city">City's weather</button>
+        <button id="get-coordinates">Coordinates' weather</button>
+      </form>
+      <div id="map"></div>
+      <div id="forecast-container">
+        <img src="" alt="" id="weather-icon" />
+        <div id="forecast"></div>
+      </div>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>
