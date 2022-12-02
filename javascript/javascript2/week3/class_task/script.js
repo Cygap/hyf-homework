@@ -3,12 +3,12 @@ const button2 = document.getElementById("button2");
 const counter = document.getElementById("counter");
 button1.addEventListener("click", increment);
 button2.addEventListener("click", increment);
-
+let count = 0;
 function increment(e) {
   if (counter.innerText) {
-    counter.innerText = Number(counter.innerText) + 1;
+    counter.innerText = ++count;
   } else {
-    counter.innerText = 0;
+    counter.innerText = count = 0;
   }
 }
 
@@ -32,18 +32,13 @@ window.addEventListener("pointermove", trackMouse);
 const intervalId = setInterval(calculateAverage, 5000);
 
 function calculateAverage() {
-  const averageCoordinates = {};
-  averageCoordinates.averageX =
-    coordinates.reduce((acc, curr) => {
-      acc.x = acc.x + curr.x;
-      return acc;
-    }).x / coordinates.length;
-  averageCoordinates.averageY =
-    coordinates.reduce((acc, curr) => {
-      acc.y += curr.y;
-      return acc;
-    }).y / coordinates.length;
-
+  const averageCoordinates = coordinates.reduce((acc, curr) => {
+    acc.x = acc.x + curr.x;
+    acc.y = acc.y + curr.y;
+    return acc;
+  });
+  averageCoordinates.x /= coordinates.length;
+  averageCoordinates.y /= coordinates.length;
   console.dir(coordinates);
   console.dir(averageCoordinates);
   counter.innerText = `average Coordinates = ${JSON.stringify(
