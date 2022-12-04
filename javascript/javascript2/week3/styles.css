@@ -1,0 +1,67 @@
+body {
+  text-align: center;
+}
+#confetti-holder {
+  position: fixed;
+}
+.player {
+  background-color: transparent;
+  width: 30%;
+  height: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid black 1px;
+  padding: 1rem;
+}
+.player span {
+  text-align: center;
+}
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+#player-two {
+  border-left: none;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+form {
+  width: 40%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: auto auto 1rem auto;
+}
+#start {
+  background-color: darkseagreen;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 0.2em #03271f;
+}
+
+#timer {
+  border-radius: 1rem;
+  box-shadow: 0 0 5px 0.1em #03271f;
+}
+
+#send-to-player {
+  position: fixed;
+  display: none;
+  font-size: 0.3rem;
+  background-color: antiquewhite;
+  z-index: 12;
+  border-radius: 1rem;
+  padding: 0.3rem;
+}
+#bomb {
+  font-size: large;
+  color: darkseagreen;
+}
