@@ -1,43 +1,7 @@
-const galaxies = `{
-    "Galaxies": [
-      "Galaxies in general",
-      "Group and cluster",
-      "Satellite galaxy",
-      "Supercluster"
-    ],
-    "By component": [
-      "Bulge",
-      "Spiral arm",
-      "Thin disk",
-      "Thick disk",
-      "Halo Corona",
-      "Tidal tail",
-      "Stellar stream"
-    ],
-    "By morphology": [
-      "Spiral",
-      "Barred spiral",
-      "Lenticular",
-      "Elliptical Ring",
-      "Irregular"
-    ],
-    "By size": ["Brightest cluster", "Giant elliptical", "Dwarf"],
-    "By type": [
-      "Protogalaxy",
-      "Starburst",
-      "Dark",
-      {
-        "Active": [
-          "Radio",
-          "Seyfert",
-          { "Quasar": ["Quasar", "Microquasar"] },
-          "Blazar"
-        ]
-      }
-    ]
-  }`;
+fetch("./galaxies.json")
+  .then((resp) => resp.json())
+  .then((response) => console.dir(response));
 
-console.dir(JSON.parse(galaxies));
 /**
  * James Webb Space Telescope API
  * you can get all public space pictures from billion light years away!
