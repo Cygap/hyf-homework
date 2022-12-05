@@ -19,7 +19,10 @@ console.dir();
 function getElementOffset(element, target) {
   const coordinates = element.getBoundingClientRect();
 
-  return { x: target.x - coordinates.left, y: target.y - coordinates.top };
+  return {
+    x: target.x - coordinates.x,
+    y: target.y - coordinates.y
+  };
 }
 
 let circles = movementVectors.entries();
@@ -70,21 +73,21 @@ moveElement(
         moveElement(
           circle,
           getElementOffset(circle, {
-            x: getRandomInt(0, window.innerWidth),
-            y: getRandomInt(0, window.innerHeight)
+            x: 0,
+            y: 0
           })
         )
       )
     );
     return Promise.all(movementPromises);
   })
-  .then(() =>
+  .then(() => {
     movementVectors.forEach((target, circle) => {
-      circle.style.top = circle.getBoundingClientRect().top;
-      circle.style.left = circle.getBoundingClientRect().left;
+      //   circle.style.top = circle.getBoundingClientRect().top;
+      //   circle.style.left = circle.getBoundingClientRect().left;
       moveElement(circle, getElementOffset(circle, target));
-    })
-  );
+    });
+  });
 
 /*moveElement(circle, {
     x: getRandomInt(0, window.innerWidth),
