@@ -1,5 +1,5 @@
 // Creating new scope
-let getRandomInt;
+let moveElement;
 {
   const redBox = document.querySelector("ul.marks li:nth-child(1)");
   const blueBox = document.querySelector("ul.marks li:nth-child(2)");
@@ -8,11 +8,11 @@ let getRandomInt;
 
   const span = document.querySelector("span");
 
-  getRandomInt = function (min, max) {
+  function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  }
 
   function randomizeStartPosition() {
     boxes.forEach((box) => {
@@ -58,13 +58,13 @@ let getRandomInt;
    * @return {Promise<any>}
    */
 
-  function moveElement(boxToMove, newPosition) {
+  moveElement = function (boxToMove, newPosition) {
     return new Promise((resolve) => {
       boxToMove.style.transform = `translate(${newPosition.x}px, ${newPosition.y}px)`;
       boxToMove.addEventListener("transitionend", resolve);
     });
-  }
+  };
 
-  window.moveElement = moveElement;
+  //   window.moveElement = moveElement;
 }
-export { getRandomInt };
+export { moveElement };

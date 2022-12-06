@@ -1,5 +1,5 @@
 "use strict";
-import { getRandomInt } from "./move-elements.js";
+import { moveElement } from "./move-elements.js";
 const redTarget = { x: 20, y: 300 };
 const blueTarget = { x: 400, y: 300 };
 const greenTarget = { x: 400, y: 20 };
@@ -14,8 +14,6 @@ const movementVectors = new Map([
   [greenCircle, greenTarget]
 ]);
 
-console.dir();
-
 function getElementOffset(element, target) {
   const coordinates = element.getBoundingClientRect();
 
@@ -25,81 +23,33 @@ function getElementOffset(element, target) {
   };
 }
 
-let circles = movementVectors.entries();
-let currentCircle = circles.next();
-
-moveElement(
-  currentCircle.value[0],
-  getElementOffset(currentCircle.value[0], currentCircle.value[1])
-)
-  .then(() => {
-    console.dir(
-      `circle ${window
-        .getComputedStyle(currentCircle.value[0])
-        .getPropertyValue("background-color")} is at target place`
-    );
-    currentCircle = circles.next();
-    return moveElement(
-      currentCircle.value[0],
-      getElementOffset(currentCircle.value[0], currentCircle.value[1])
-    );
-  })
-  .then(() => {
-    console.dir(
-      `circle ${window
-        .getComputedStyle(currentCircle.value[0])
-        .getPropertyValue("background-color")} is at target place`
-    );
-    currentCircle = circles.next();
-    return moveElement(
-      currentCircle.value[0],
-      getElementOffset(currentCircle.value[0], currentCircle.value[1])
-    );
-  })
-  .then(() => {
-    console.dir(
-      `circle ${window
-        .getComputedStyle(currentCircle.value[0])
-        .getPropertyValue("background-color")} is at target place: x=${
-        currentCircle.value[0].getBoundingClientRect().x
-      } y=${currentCircle.value[0].getBoundingClientRect().y}`
-    );
-    console.dir(movementVectors);
-  })
-  .then(() => {
-    const movementPromises = [];
-    movementVectors.forEach((target, circle) =>
-      movementPromises.push(
-        moveElement(
-          circle,
-          getElementOffset(circle, {
-            x: 0,
-            y: 0
-          })
-        )
-      )
-    );
-    return Promise.all(movementPromises);
-  })
-  .then(() => {
-    movementVectors.forEach((target, circle) => {
-      //   circle.style.top = circle.getBoundingClientRect().top;
-      //   circle.style.left = circle.getBoundingClientRect().left;
-      moveElement(circle, getElementOffset(circle, target));
-    });
-  });
-
-/*moveElement(circle, {
-    x: getRandomInt(0, window.innerWidth),
-    y: getRandomInt(0, window.innerHeight)
-  });*/
-/*
-movementVectors.forEach((target, circle) =>
-  moveElement(circle, getElementOffset(circle, target)).then(() =>
+async function ILikeRoMoveItMoveIt() {
+  for (let [circle, target] of movementVectors) {
+    await moveElement(circle, getElementOffset(circle, target));
     console.dir(
       `circle ${window
         .getComputedStyle(circle)
         .getPropertyValue("background-color")} is at target place`
+    );
+  }
+  const movementPromises = [];
+  movementVectors.forEach((target, circle) =>
+    movementPromises.push(
+      moveElement(circle, {
+        x: 0,
+        y: 0
+      })
     )
-  )
-);*/
+  );
+  await Promise.all(movementPromises);
+  console.log("Circles' positions reset");
+  movementPromises.length = 0;
+  movementVectors.forEach((target, circle) =>
+    movementPromises.push(moveElement(circle, getElementOffset(circle, target)))
+  );
+  await Promise.all(movementPromises); //Could have done it without await Promise.all,
+  // the same visual effect, with only few milliseconds difference.
+  console.log("All circles positioned at target");
+}
+
+ILikeRoMoveItMoveIt();
