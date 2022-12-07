@@ -1,0 +1,375 @@
+/*
+*  html5resetcss
+*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0px solid #000;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    box-sizing: border-box;
+    font-size: 14pt;
+
+}
+
+body {
+    line-height: 1
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block
+}
+
+nav ul,
+ul {
+    list-style: none;
+
+}
+
+blockquote,
+q {
+    quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: none
+}
+
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent
+}
+
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none
+}
+
+mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold
+}
+
+del {
+    text-decoration: line-through
+}
+
+abbr[title],
+dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0
+}
+
+input,
+select {
+    vertical-align: middle
+}
+
+/*Here go the styles*/
+
+/*trying to use Mobile first approach*/
+
+.experience,
+.experience-item,
+.education,
+.merits-and-hobbies,
+.contact-details,
+.figure {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact-details {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.experience-item,
+.education,
+.merits-and-hobbies,
+.experience {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.figure {
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.figure>img {
+    align-self: center;
+    /*overriding align properties - so that the image does not stretch*/
+    border-radius: 25%;
+}
+
+header h1,
+.date-of-birth {
+    height: 50px;
+    text-align: center;
+    background-color: hsl(194, 60%, 93%);
+
+}
+
+.date-of-birth {
+    padding-top: 15px;
+}
+
+.misc-header {
+    margin-top: 50px;
+}
+
+.figure h1 {
+    font-size: 2em;
+}
+
+
+.experience-item,
+.education,
+.responsibilities {
+    margin-bottom: 40px;
+    width: 100%;
+    text-align: center;
+
+}
+
+.responsibilities li {
+    padding: 2%;
+}
+
+header {
+    font-weight: bold;
+}
+
+
+/*Emphasising with color...*/
+.dates-of-work,
+.company,
+.position,
+li:first-child {
+    font-weight: bold;
+    color: chocolate;
+    text-align: center;
+}
+
+.company {
+    color: #000;
+    /*didn't like the looks of the same color for all the info points*/
+}
+
+li:first-child {
+    margin-top: 2%;
+    /*make a little more room for the start of the list*/
+}
+
+.personnel {
+    text-align: center;
+}
+
+li:nth-of-type(even),
+.qualification:nth-of-type(even) {
+    background-color: hsl(194, 60%, 93%);
+    /*making table-style list background*/
+}
+
+.contact-details,
+.education .misc-header,
+.merits-and-hobbies .misc-header {
+    background-color: lightgoldenrodyellow;
+    color: navy;
+}
+
+.misc-header {
+    align-self: stretch;
+    text-align: center;
+
+}
+
+.dates-of-work {
+    margin-top: 25px;
+
+}
+
+@media screen and (min-width: 960px) {
+
+    /*to rearrange the items for bigger screens I decided to set the grid up - I can better control all the exact positions of the elements.*/
+    article {
+        display: grid;
+        grid-template-columns: 300px auto;
+        grid-template-rows: 1fr 1fr 1fr;
+        align-items: start;
+        background-color: lightgoldenrodyellow;
+    }
+
+    .figure {
+        display: grid;
+        grid-template-columns: 300px auto;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    .figure img {
+        grid-column: 1;
+        grid-row: 1 / span 3;
+        place-self: center;
+    }
+
+    .date-of-birth,
+    .figure h1 {
+        height: 100%;
+        padding: 25px;
+    }
+
+    .contact-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .experience-item,
+    ul {
+        width: 600px;
+    }
+
+    .education,
+    .merits-and-hobbies {
+        grid-column: 1 / span 1;
+        background-color: lightgoldenrodyellow;
+        padding: 0 3% 0 3%;
+        text-align: center;
+    }
+
+    .education .qualification {
+        background-color: lightgoldenrodyellow;
+    }
+
+    .experience {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 3;
+        background-color: #FFF;
+    }
+}
+
+@media screen and (min-width:1200px) {
+
+    /*I tried to avoid too much blank space around the experience section on biggest screens, I do not like the result, but at least it uses screen real estate more efficiently */
+    .experience-wrap {
+        grid-row: 1 / span 3;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
+
+    article {
+
+        grid-template-rows: none;
+
+    }
+
+    /*I can't understand, why after this selector works my article element does not shrinks to match the height of .experience-wrap div... it remains as tall, as it was and visually it appears like ther is an empty footer...*/
+}

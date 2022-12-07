@@ -1,0 +1,379 @@
+/*
+*  html5resetcss
+*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+nav ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: none;
+}
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+del {
+  text-decoration: line-through;
+}
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+input,
+select {
+  vertical-align: middle;
+  flex-grow: 1;
+}
+html {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: calc(15px + 0.390625vw);
+}
+
+/* STYLES FOR THE COMMON HEADER, PROGRESS AND OTHER COMMON ELEMENTS */
+.header-nav {
+  width: 35%;
+  height: 5rem;
+  background-color: #ccc;
+}
+.logo-nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  overflow-wrap: break-word;
+}
+.current-step {
+  margin-top: 2rem;
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+
+.animation {
+  width: 90vw;
+  height: 3vh;
+  border: 1px solid gray;
+  border-radius: 3vh;
+}
+
+.progress {
+  display: block;
+  height: 100%;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    0deg,
+    rgb(54, 40, 1) 0%,
+    rgba(255, 170, 0, 1) 10%,
+    rgb(245, 243, 230, 1) 90%
+  );
+  border-radius: 3vh;
+  animation: progress-grow 1500ms ease-in;
+}
+
+@keyframes progress-grow {
+  from {
+    width: 0%;
+  }
+}
+
+legend,
+p,
+h1,
+fieldset {
+  padding: 0 0.5rem;
+}
+
+form {
+  position: relative;
+}
+
+header ~ p,
+.explainer {
+  padding-top: 2rem;
+}
+
+fieldset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.field {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: stretch;
+}
+
+input[required] + label::after,
+select[required] + label::after {
+  color: red;
+  content: " *";
+}
+.buttons-wrapper {
+  display: flex;
+  padding: 0 1rem;
+  justify-content: flex-end;
+}
+button,
+.next {
+  /* position: absolute; */
+  right: 0%;
+  height: 2rem;
+  width: 30%;
+  font-size: large;
+}
+.next {
+  box-sizing: border-box;
+  color: #000;
+  background-color: #ccc;
+  border: 1px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 0.5vh;
+}
+/* STYLES FOR THE 1ST PAGE AND COMMON ELEMENTS ON OTHER PAGES*/
+
+.step1 {
+  width: 25%;
+}
+textarea {
+  width: 100%;
+}
+#shipping-address {
+  width: 10%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+}
+.shipping-label {
+  position: absolute;
+  right: 60%;
+}
+#shipping-address:checked ~ .shipping {
+  visibility: hidden;
+}
+
+.shipping {
+  margin-top: 2.5rem;
+}
+
+/* STYLES FOR THE SECOND PAGE */
+.step2 {
+  width: 50%;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+}
+
+.newsletter .field,
+.newsletter {
+  margin-top: 2rem;
+}
+
+.user-id {
+  align-items: flex-end;
+}
+
+/* STYLES FOR THE THIRD PAGE */
+.step3 {
+  width: 75%;
+}
+
+.interest .field {
+  width: auto;
+}
+
+.interest,
+.styles {
+  margin-top: 2rem;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.image-placeholder {
+  width: 200px;
+  height: 200px;
+  background-color: blanchedalmond;
+}
+
+/* STYLES FOR THE THIRD PAGE */
+.step4 {
+  width: 98%;
+}
+
+.payment {
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+
+.short-data {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-flow: row wrap;
+  margin: 0 10% 1rem 10%;
+}
+.short-data .field {
+  width: auto;
+  margin: 0%;
+}
+.short-data input {
+  width: 3rem;
+  flex-grow: 0;
+}
+
+@media screen and (min-width: 720px) {
+  fieldset {
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .newsletter .field {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Sign up to yourcustomtailor.com step-2</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo-nav-wrapper">
+        <img
+          src="https://dummyimage.com/80x80/ccc/000.png&text=Logo"
+          alt="logo placeholder"
+          class="logo" />
+        <nav class="header-nav">Navigation</nav>
+      </div>
+      <h1>Sign up to yourcustomtailor.com</h1>
+    </header>
+    <form action="#" method="get">
+      <div class="current-step">
+        <h2>Step 2/4 - how can we reach you?</h2>
+        <div class="animation"><span class="progress step2"></span></div>
+      </div>
+      <p class="explainer">
+        We will probably need to stay in touch somehow. Let us know how we can
+        reach you?
+      </p>
+      <fieldset class="user-id">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+          <label for="email"></label>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            id="phone"
+            pattern="^(?:(?:00|\+)?45)?(?=2|3[01]|4[012]|4911|5[0-3]|6[01]|[78]1|9[123])\d{8}$" />
+          <!-- pattern according to the numbering rules for mobiles here: https://en.wikipedia.org/wiki/Telephone_numbers_in_Denmark -->
+          <label for="phone"></label>
+        </div>
+        <div class="field">
+          <label for="pass">Your password:</label>
+          <input
+            type="password"
+            id="pass"
+            name="password"
+            minlength="10"
+            required
+            placeholder="Min 10 characters, uppercase and lowercase letters:"
+            pattern="(?=^.{10,}$)((?=.*\w)(?=.*[A-ZÆØÅ])(?=.*[a-zæøå]))^.*" />
+          <!-- Pattern for Minimum 10 characters, uppercase and lowercase letters only - doesn't require digits or special characters. -->
+          <label for="pass"></label>
+        </div>
+        <div class="field">
+          <label for="pass2">Reenter password:</label>
+          <input
+            type="password"
+            id="pass2"
+            name="password2"
+            minlength="10"
+            required
+            pattern="(?=^.{10,}$)((?=.*\w)(?=.*[A-ZÆØÅ])(?=.*[a-zæøå]))^.*" />
+          <!-- DOESN'T CHECK WHETHER PASSWORDS ARE IDENTICAL. Didn't find a way to perform such a check without javascript.-->
+          <label for="pass2"></label>
+        </div>
+      </fieldset>
+      <fieldset name="newsletter" class="newsletter">
+        <legend>I want to sign up for the newsletter</legend>
+        <div class="field">
+          <label for="weekly">Weekly news</label>
+          <!-- As soon as at least one radio button is checked by default, the user cannot make all buttons unchecked. So no other validation is added -->
+          <input
+            type="radio"
+            id="weekly"
+            name="newsletter"
+            value="weekly"
+            checked />
+          <label for="weekly"></label>
+        </div>
+        <div class="field">
+          <label for="monthly">Monthly news</label>
+          <input type="radio" id="monthly" name="newsletter" value="monthly" />
+          <label for="monthly"></label>
+        </div>
+        <div class="field">
+          <label for="nonews">Don't send me news</label>
+          <input type="radio" id="nonews" name="newsletter" value="nonews" />
+          <label for="nonews"></label>
+        </div>
+      </fieldset>
+      <div class="buttons-wrapper">
+        <button type="submit">Submit</button>
+        <a class="next" href="./index2.html">Next step</a>
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
+  <body>
+    <!-- Write html here -->
+    <h1>Order Summary</h1>
+    <div class="services-wrapper">
+      <p>Soudfa Plus: 3 months</p>
+      <p>$33.33 / month</p>
+    </div>
+    <div class="total-wrapper">
+      <p>Total</p>
+      <p>$100</p>
+    </div>
+    <form action="#">
+      <fieldset class="payment-method">
+        <legend>Payment Method</legend>
+        <label for="card">Credit/Debit</label>
+        <input type="radio" name="payment" id="card" value="Credit/Debit" />
+        <label for="paypal">PayPal</label>
+        <input type="radio" name="payment" id="paypal" value="Credit/Debit" />
+      </fieldset>
+      <fieldset>
+        <legend>Card Info</legend>
+        <input
+          type="tel"
+          class="credit-card"
+          name="card"
+          id="card"
+          required
+          pattern="[0-9]{4}\s?[0-9]{4}\s?[0-9]{4}\s?[0-9]{4}"
+          placeholder="Card number"
+        />
+        <input
+          type="text"
+          class="expirydate"
+          name="exp-date"
+          id="exp-date"
+          required
+          pattern="[0-9]{2}\/[0-9]{4}"
+          placeholder="Expiry date"
+        />
+        <input
+          type="tel"
+          name="cvv"
+          id="cvv"
+          required
+          pattern="[0-9]{3}"
+          placeholder="Security code"
+        />
+      </fieldset>
+      <button type="submit">Buy Now</button>
+    </form>
+  </body>
+</html>

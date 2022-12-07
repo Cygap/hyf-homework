@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.responsive {
+    display: flex;
+    flex-flow: column;
+}
+
+@media screen and (min-width: 30rem) {
+    .responsive {
+        flex-flow: row;
+    }
+}

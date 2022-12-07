@@ -1,0 +1,40 @@
+﻿WEB DEVELOPMENT AS AN INDUSTRY
+
+an article about web development
+
+home about ~—ourservices__—ourroffice
+
+ 
+
+WEB DEVELOPMENT AS AN INDUSTRY
+
+Examples of dramatic transformation in communication and commerce led by web development include e-commerce. Online auction sites such as eBay have changed the way consumers find and purchase goods and services. Online retailers such as Amazon.com and Buy.com(among many others) have transformed the shopping and bargain-hunting experience for many consumers.
+THE GALLERY
+
+Images to the right should be added as links. Each image should be responsive.
+
+3999 Mi...
+
+ 
+
+jennues
+
+Mission Biv
++
+
+oogle
+Map data 62018 Google Terms of Use
+
+PRACTICAL WEB DEVELOPMENT
+
+Since the commercialization of the web, web development has been a growingindustry. The growth of this industry is being driven by businesses wishing to usetheir website to sell products and services to customers.(1]There is open source software for web development like BerkeleyDB, GlassFish,LAMP (Linux, Apache, MySQL, PHP) stack and Perl/Plack. This has kept the cost oflearning web development to a minimum. Another contributing factor to thegrowth of the industry has been the rise of easy-to-use WYSIWYG web-develop-ment software, such as Adobe Dreamweaver, BlueGriffon and Microsoft VisualStudio. Knowledge of HyperText Markup Language (HTML) or of programminglanguages is still required to use such software, but the basics can be learned andimplemented quickly with the help of help files, technical books, internet tutorials,or face-to-face training.
+An ever-growing set of tools and technologies have helped developers build moredynamic and interactive websites. Further, web developers now help to deliverapplications as web services which were traditionally only available as applica-tions on a desk-based computer. This has allowed for many opportunities to de-centralize information and media distribution. Examples can be seen with the rise of cloud services such as Adobe Creative Cloud, Dropbox and Google Docs. These
+web services allow users to interact with applications from many locations, instead of being tied to a specific workstation for their application environment.
+
+LOGOTYPES ON THE WEB
+
+ 
+
+  
+
+
