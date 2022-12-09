@@ -9,32 +9,6 @@ class Product {
   }
 }
 
-function handleListClick({ target }) {
-  switch (target.className) {
-    case "plus":
-      shoppingCart.products.find(
-        (product) => product.id === +target.parentElement.id
-      ).quantity++;
-      shoppingCart.renderProducts();
-      break;
-    case "minus":
-      shoppingCart.removeProduct(
-        shoppingCart.products.find(
-          (product) => product.id === +target.parentElement.id
-        )
-      );
-      shoppingCart.renderProducts();
-      break;
-    default:
-      const productId =
-        target.parentElement.id === "products"
-          ? target.id
-          : target.parentElement.id;
-      shoppingCart.showProduct(productId);
-  }
-}
-products.addEventListener("click", handleListClick);
-
 class ShoppingCart {
   constructor() {
     this.products = [];
@@ -79,17 +53,40 @@ class ShoppingCart {
       0
     );
   }
-
+  handleListClick({ target }) {
+    switch (target.className) {
+      case "plus":
+        shoppingCart.products.find(
+          (product) => product.id === +target.closest("li").id
+        ).quantity++;
+        shoppingCart.renderProducts();
+        break;
+      case "minus":
+        shoppingCart.removeProduct(
+          shoppingCart.products.find(
+            (product) => product.id === +target.closest("li").id
+          )
+        );
+        shoppingCart.renderProducts();
+        break;
+      case "products":
+        break;
+      default:
+        shoppingCart.showProduct(target.closest("li").id);
+    }
+  }
   renderProducts() {
     products.innerHTML = "";
     this.products.forEach((product) => {
       products.innerHTML += `<li id = "${
         product.id
-      }"><button class="plus">+</button> ${
+      }" class = "flex-row"><span><button class="plus">+</button> ${
         product.quantity
-      } <button class="minus">-</button> <b>${product.name}</b> for ${
-        product.price
-      } per item, totalling to: <b>${product.quantity * product.price}</b>`;
+      } <button class="minus">-</button></span> <span><b>${
+        product.name
+      }</b> for ${product.price} per item, totalling to: <b>${
+        product.quantity * product.price
+      }</b></span>`;
     });
     total.innerHTML = `The total price of all products is: <b>${shoppingCart.getTotal()}</b>`;
   }
@@ -130,6 +127,8 @@ async function getProducts() {
   }
   shoppingCart.renderProducts();
 }
+
+products.addEventListener("click", shoppingCart.handleListClick);
 
 shoppingCart
   .getUser("Antonette")

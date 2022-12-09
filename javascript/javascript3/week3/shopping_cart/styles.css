@@ -4,10 +4,29 @@
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
+header {
+  position: sticky;
+  top: 0px;
+  background-color: white;
+}
 
+ul {
+  list-style: none;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 0.3rem;
+}
+
+li,
+header {
+  border: solid navy 1px;
+  border-radius: 5px;
+  padding: 3px;
+}
 body {
   display: flex;
   flex-direction: column;
+  gap: 3rem;
   align-items: center;
   color: #222;
   position: relative;
@@ -36,6 +55,13 @@ body {
   align-content: center;
   gap: 0.3rem;
 }
+
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.2rem 0.5rem;
+  align-content: center;
+}
 .modal p {
   font-size: 0.9rem;
   color: #777;
@@ -61,19 +87,9 @@ button {
   border-radius: 5px;
   text-align: center;
   font-size: 1em;
+  align-self: center;
 }
 
-.btn-open {
-  position: absolute;
-  bottom: 150px;
-}
-
-.btn-close {
-  transform: translate(10px, -20px);
-  padding: 0.5rem 0.7rem;
-  background: #eee;
-  border-radius: 50%;
-}
 .overlay {
   position: fixed;
   top: 0;
