@@ -27,17 +27,17 @@ class ShoppingCart {
   }
 
   addProduct(product) {
-    if (!product.quantity) {
+    if (!this.searchProduct(product.id)) {
       product.quantity = 1;
+      this.products.push(product);
     } else {
-      product.quantity++;
+      this.searchProduct(product.id).quantity++;
     }
-    this.products.push(product);
   }
   /**
    * Reduces the quantity of a given product or removes the product object from an array if the quantity equals 1.
    * @param {object} product object, wich user needs to remove.
-   * @returns {number} - number of products, remaining in cart or -1 if the product is not found.
+   * @returns {number|string} - number of products, remaining in cart or -1 if the product is not found or product id if the quantity is 0.
    */
   removeProduct(product) {
     const index = this.products.indexOf(product);
@@ -47,16 +47,15 @@ class ShoppingCart {
         product.quantity--;
         return product.quantity;
       } else {
-        this.products.splice(index, 1);
-        return 0;
+        return this.products.splice(index, 1).id;
       }
     } else {
       return index;
     }
   }
 
-  searchProduct(productName) {
-    return this.products.filter((product) => product.name === productName);
+  searchProduct(productId) {
+    return this.products.find((product) => product.id === productId);
   }
 
   getTotal() {
@@ -105,8 +104,8 @@ class ShoppingCart {
   showProduct(productId) {
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
-    const product = this.products.find((product) => product.id === +productId);
-    product.convertToCurrency("DKK");
+    const product = this.products.find((product) => product.id === productId);
+
     document.querySelector("#product-info").innerHTML = `<h2>${
       product.name
     }</h2>
@@ -135,16 +134,5 @@ class ShoppingCart {
 
 /*
 const flatscreen = new Product("flat-screen", 5000);*/
-
-async function getProducts() {
-  let response = await fetch("https://dummyjson.com/products");
-  response = await response.json();
-  for (let product of response.products) {
-    shoppingCart.addProduct(
-      new Product(product.title, product.price, product.id)
-    );
-  }
-  shoppingCart.renderProducts();
-}
 
 export { Product, ShoppingCart };

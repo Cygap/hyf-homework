@@ -21,7 +21,7 @@ document.querySelector("#list-controls").addEventListener("submit", (event) => {
   shoppingCart
     .getUser("Antonette")
     .then(([user]) => {
-      header.innerText += ` for ${user.username} contains:`;
+      header.innerText = `${user.username}'s sopping cart:`;
     })
     .then((response) => shoppingCart.renderProducts());
 });
@@ -67,7 +67,7 @@ function selectProduct(e) {
       : productElement.price;
     productElement.classList.contains("selected")
       ? shoppingCart.removeProduct(
-          new Product(product.name, product.price, product.id)
+          shoppingCart.searchProduct(productElement.id)
         )
       : shoppingCart.addProduct(
           new Product(product.name, product.price, product.id)
