@@ -1,24 +1,28 @@
-* {
+.cart-wrapper {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  width: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
-header {
+.cart-wrapper header {
   position: sticky;
   top: 0px;
   background-color: white;
 }
 
-ul {
+.cart-wrapper ul {
   list-style: none;
   display: flex;
   flex-flow: column wrap;
   gap: 0.3rem;
 }
 
-li,
-header {
+.cart-wrapper li,
+.cart-wrapper header {
   border: solid navy 1px;
   border-radius: 5px;
   padding: 3px;

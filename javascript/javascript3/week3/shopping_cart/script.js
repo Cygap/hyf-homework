@@ -1,11 +1,23 @@
+"use strict";
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-
+const currencyAPI = "IXVj8Sn6j6kNAdP2kGx3ziiTCIz5xlWt9LYPNXiJ";
 class Product {
   constructor(name, price, id) {
     this.name = name;
     this.price = price;
     this.id = id;
+    this.currency = "USD";
+  }
+  convertToCurrency(currency) {
+    return fetch(
+      `https://api.freecurrencyapi.com/v1/latest?apikey=${currencyAPI}&base_currency=${this.currency}&currencies=${currency}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        this.price = response.data[currency] * this.price;
+        this.currency = currency;
+      });
   }
 }
 
@@ -56,23 +68,23 @@ class ShoppingCart {
   handleListClick({ target }) {
     switch (target.className) {
       case "plus":
-        shoppingCart.products.find(
-          (product) => product.id === +target.closest("li").id
-        ).quantity++;
-        shoppingCart.renderProducts();
+        this.products.find((product) => product.id === target.closest("li").id)
+          .quantity++;
+
+        this.renderProducts();
         break;
       case "minus":
-        shoppingCart.removeProduct(
-          shoppingCart.products.find(
-            (product) => product.id === +target.closest("li").id
+        this.removeProduct(
+          this.products.find(
+            (product) => product.id === target.closest("li").id
           )
         );
-        shoppingCart.renderProducts();
+        this.renderProducts();
         break;
       case "products":
         break;
       default:
-        shoppingCart.showProduct(target.closest("li").id);
+        this.showProduct(target.closest("li").id);
     }
   }
   renderProducts() {
@@ -88,12 +100,13 @@ class ShoppingCart {
         product.quantity * product.price
       }</b></span>`;
     });
-    total.innerHTML = `The total price of all products is: <b>${shoppingCart.getTotal()}</b>`;
+    total.innerHTML = `The total price of all products is: <b>${this.getTotal()}</b>`;
   }
   showProduct(productId) {
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
     const product = this.products.find((product) => product.id === +productId);
+    product.convertToCurrency("DKK");
     document.querySelector("#product-info").innerHTML = `<h2>${
       product.name
     }</h2>
@@ -110,29 +123,28 @@ class ShoppingCart {
       `https://jsonplaceholder.typicode.com/users?username=${user}`
     ).then((response) => response.json());
   }
+
+  async handleCurrency({ target: { value: currency } }) {
+    total.innerHTML += "... fetching currency data";
+    await Promise.all(
+      this.products.map((product) => product.convertToCurrency(currency))
+    );
+    this.renderProducts();
+  }
 }
 
-const shoppingCart = new ShoppingCart();
-const flatscreen = new Product("flat-screen", 5000);
+/*
+const flatscreen = new Product("flat-screen", 5000);*/
 
 async function getProducts() {
   let response = await fetch("https://dummyjson.com/products");
   response = await response.json();
   for (let product of response.products) {
-    shoppingCart.addProduct({
-      name: product.title,
-      price: product.price,
-      id: product.id
-    });
+    shoppingCart.addProduct(
+      new Product(product.title, product.price, product.id)
+    );
   }
   shoppingCart.renderProducts();
 }
 
-products.addEventListener("click", shoppingCart.handleListClick);
-
-shoppingCart
-  .getUser("Antonette")
-  .then(([user]) => {
-    header.innerText += ` for ${user.username} contains:`;
-  })
-  .then((response) => getProducts());
+export { Product, ShoppingCart };
