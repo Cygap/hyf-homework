@@ -6,6 +6,10 @@ const products = getAvailableProducts();
 const list = document.querySelector("#hyf-products");
 const shoppingCart = new ShoppingCart();
 
+/**
+ * Listens to the submit event of form with controls and inputs, then shows a cart with the selected products
+ * for the placeholder's user "Antonette" - user should be replaced depending on deployment reqs
+ */
 document.querySelector("#list-controls").addEventListener("submit", (event) => {
   event.preventDefault();
   document.querySelector(".cart-wrapper").classList.toggle("hidden");
