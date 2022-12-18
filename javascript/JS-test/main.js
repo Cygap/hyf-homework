@@ -36,7 +36,18 @@ buttonEl.addEventListener("click", () => {
 3. Async API calls
 Make an API call using the Fetch API. Make use of the following API:
 https://reqres.in/api/users
-Display the email of the first three users in the DOM
+Display the email of the first three users in the DOM*/
+async function getUsers(url, n) {
+  const response = await fetch(url);
+  const users = await response.json();
+  console.dir(`the emails of first ${n} of the requested users are:`);
+  for (let i = 0; i < n; i++) {
+    console.log(users.data[i].email);
+  }
+}
+
+getUsers("https://reqres.in/api/users", 3);
+/*
 4. Class (optional)
 Create a class called Product. The constructor should have 2 parameters called price
 and name. It should have 1 method calledlogProductthat should log: 'NAME is PRICE
