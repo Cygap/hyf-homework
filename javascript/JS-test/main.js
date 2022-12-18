@@ -18,3 +18,26 @@ for (let i = 10; i <= 40; i += 2) {
     console.log(i);
   }
 }
+
+/*2. DOM manipulation
+Using JavaScript, create a button and add it to the html (the document).
+When the button is clicked:
+-Insert an h1 tag with the text “This is an h1 tag”*/
+const buttonEl = document.createElement("button");
+buttonEl.innerText = "Click me!";
+document.body.append(buttonEl);
+buttonEl.addEventListener("click", () => {
+  const headerEl = document.createElement("h1");
+  buttonEl.before(headerEl);
+  headerEl.innerText = "This is an h1 tag";
+});
+
+/*
+3. Async API calls
+Make an API call using the Fetch API. Make use of the following API:
+https://reqres.in/api/users
+Display the email of the first three users in the DOM
+4. Class (optional)
+Create a class called Product. The constructor should have 2 parameters called price
+and name. It should have 1 method calledlogProductthat should log: 'NAME is PRICE
+kr'*/
