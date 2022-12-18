@@ -65,14 +65,14 @@ kr'*/
 
 console.log("\nTask four:");
 class Product {
-  constructor(price, name) {
+  constructor(name, price) {
     this.price = price;
     this.name = name;
   }
   logProduct() {
-    console.log(`${this.name} is ${this.price}`);
+    console.log(`${this.name} is ${this.price} kr`);
   }
 }
-const iPhone = new Product(6000, "Iphone 13 mini 128 GB");
+const iPhone = new Product("Iphone 13 mini 128 GB", 6000);
 console.dir(iPhone);
 iPhone.logProduct();
