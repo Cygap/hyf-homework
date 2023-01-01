@@ -20,9 +20,33 @@
           pattern="http(s)?:\/\/.*" />
       </div>
 
-      <button class="button">Get your Screenshot</button>
+      <button class="button" id="get-screenshot-button">
+        Get your Screenshot
+      </button>
     </form>
     <div id="screenshot-container" class="screenshot-container"></div>
+    <div class="modal-container">
+      <form action="" method="get" id="login-form" class="modal form-field">
+        <label for="user-email"
+          ><input
+            class="input .form-field"
+            type="email"
+            name="user-email"
+            id="user-email"
+            placeholder="yourmail@domain"
+            required
+        /></label>
+        <label for="password"
+          ><input
+            class="input .form-field"
+            type="text"
+            id="password"
+            placeholder="enter your password here"
+            required
+        /></label>
+        <button type="submit" class="button" id="login-button">log in</button>
+      </form>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>

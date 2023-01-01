@@ -19,24 +19,18 @@ body {
   margin: 0 auto;
 }
 
-#get-screenshot-form .form-field {
+.form-field {
   margin-bottom: 1rem;
 }
 
-#get-screenshot-form .label {
+.label {
   font-weight: 700;
   font-size: 1.4rem;
 }
 
-#get-screenshot-form .input {
+.input {
   width: 100%;
   height: 3rem;
-}
-
-#get-screenshot-form .textarea {
-  width: 100%;
-  resize: none;
-  height: 35rem;
 }
 
 .screenshot-container {
@@ -119,7 +113,15 @@ body {
 
   transform: translate(-50%, -50%);
   background-color: #fff;
-  height: 40rem;
+  height: 20rem;
   width: 60rem;
   border-radius: 0.5rem;
+}
+#login-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+.hidden {
+  display: none;
 }
