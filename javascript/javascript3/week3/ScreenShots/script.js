@@ -1,4 +1,5 @@
 // initializing variables
+// Decided not to hide crudcrudKEY anywhere - it is valid for only 24 hours
 const screenshotKEY = "af35d9bda9msh1d5d601753355fcp1d5ca1jsnc37e78a50099";
 const crudcrudKEY = "015f575110104eb2980297c1947ca0db";
 const crudcrudURL = "https://crudcrud.com/api";
@@ -8,6 +9,10 @@ let currentUser = {
   hash: -946852072
 };
 
+/**
+ * Deletes the screenshot record from crudcrud.
+ * @param {hex} id - unique number to identify user. the format provided by crudcrud.com
+ */
 async function deleteScreenShot(id) {
   const response = await fetch(
     `${crudcrudURL}/${crudcrudKEY}/screenshots/${id}`,
@@ -19,6 +24,12 @@ async function deleteScreenShot(id) {
   document.getElementById(id).remove();
 }
 
+/**
+ * Gets the target url, then calls website-screenshot6.p.rapidapi.com to get the link with the image.
+ * Posts the screenshot and metadata to crudcrud by calling postScreenshot.
+ * Then calls renderScreenshot to show it on the page.
+ * @param {object} event - form submit.
+ */
 async function getScreenShot(event) {
   event.preventDefault();
   const targetSite = document.getElementById("target-address").value;
@@ -62,11 +73,11 @@ async function getScreenShot(event) {
 }
 
 /**
- * Returns a hash code from a string
+ * Returns a hash code from a string - to emulate secure storage of passwords.
  * @param  {String} str The string to hash.
  * @return {Number}    A 32bit integer
  * @see http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
- */
+ * @returns {Number} - unique sequence of digits for a given string.*/
 function hashCode(str) {
   let hash = 0;
   for (let i = 0, len = str.length; i < len; i++) {
@@ -77,6 +88,13 @@ function hashCode(str) {
   return hash;
 }
 
+/**
+ * Saves the addres of the screenshot with metadata to crudcrud.com.
+ * @param {String} url - web address with the screenshot image.
+ * @param {String} target - web adress of the site, from which the screenshot was taken.
+ * @param {Object} user - metadata of the user, which saved the screenshot.
+ * @returns {Object} result - the object with all the added data (for rendering at a later stage).
+ */
 async function postScreenshot(url, target, user) {
   const body = {
     url,
@@ -97,6 +115,11 @@ async function postScreenshot(url, target, user) {
   return result;
 }
 
+/**
+ * Fetches screenshot data for the current user, then calls rendering function with the array of
+ * screnshot objects to render.
+ * @param {String} user - user id, currently implemented as user email.
+ */
 async function getScreenshots(user) {
   try {
     const response = await fetch(`${crudcrudURL}/${crudcrudKEY}/screenshots`);
@@ -116,11 +139,20 @@ async function getScreenshots(user) {
     console.log(error.message);
   }
 }
+
+/**
+ * Clears the container, then calls rendering function for each screenshot object.
+ * @param {Array} screenshots - array of objects with screenshot data
+ */
 function renderScreenshots(screenshots) {
   document.getElementById("screenshot-container").innerHTML = "";
   screenshots.forEach((screenshot) => renderScreenshot(screenshot));
 }
 
+/**
+ * shows the screenshot on the page, adds delete button with the relevant eventlistener.
+ * @param {Object} screenshot - object with all the metadata for rendering screenshot.
+ */
 function renderScreenshot(screenshot) {
   const screenshotElement = document.createElement("div");
   screenshotElement.id = screenshot._id;
@@ -128,6 +160,12 @@ function renderScreenshot(screenshot) {
   screenshotElement.innerHTML = `<img src="${screenshot.url}" alt="screeenshot of ${screenshot.target}" width="600px">
   <button class="button delete" onclick="deleteScreenShot('${screenshot._id}')">Delete screenshot</button>`;
 }
+
+/**
+ * Posts the user data to crudcrud.
+ * @param {String} user - user identification
+ * @param {Number} hash - user password hash (moque one)
+ */
 async function createUser(user, hash) {
   const body = {
     userId: user,
@@ -143,6 +181,12 @@ async function createUser(user, hash) {
   });
 }
 
+/**
+ * Checks the users at Crudcrud, if there are none - creates one automatically. If there are users -
+ * checks entered credentials against user data at crudcrud. If the user exists and the password is correct
+ * calls the function to get and render screenshots.
+ * @param {Object} event form submit
+ */
 async function loginUser(event) {
   event.preventDefault();
   try {
@@ -182,6 +226,10 @@ async function loginUser(event) {
   }
 }
 
+/**
+ * Shows oogin modal to change the user.
+ * @param {Object} event - click
+ */
 function changeUser(event) {
   event.preventDefault();
   document.querySelector(".modal-container").classList.toggle("hidden");
@@ -189,10 +237,13 @@ function changeUser(event) {
 
 //event listeners
 document.getElementById("login-form").addEventListener("submit", loginUser);
+
 document.getElementById("change-user").addEventListener("click", changeUser);
+
 document
   .querySelector("#get-screenshot-form")
   .addEventListener("submit", getScreenShot);
+
 document
   .getElementById("new-user-button")
   .addEventListener("click", () =>
