@@ -94,6 +94,12 @@ body {
   background-color: #ff4d00;
 }
 
+#change-user {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-size: large;
+}
 /* MODAL STYLES */
 
 .modal-container {
@@ -113,7 +119,7 @@ body {
 
   transform: translate(-50%, -50%);
   background-color: #fff;
-  height: 20rem;
+  height: 30rem;
   width: 60rem;
   border-radius: 0.5rem;
 }
@@ -121,6 +127,12 @@ body {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
+  padding: 1rem;
+  row-gap: 10px;
+}
+
+#login-form.button {
+  margin: 0;
 }
 .hidden {
   display: none;

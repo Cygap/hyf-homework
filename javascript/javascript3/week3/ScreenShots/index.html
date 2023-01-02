@@ -8,6 +8,9 @@
     <title>Screenshot saver - JS 3 week 3 homework</title>
   </head>
   <body>
+    <a href="http://" target="_blank" rel="noopener noreferrer" id="change-user"
+      >Log in</a
+    >
     <h1 class="heading-1">Get a Screenshot from your website</h1>
     <form id="get-screenshot-form">
       <div class="form-field">
@@ -29,7 +32,7 @@
       <form action="" method="get" id="login-form" class="modal form-field">
         <label for="user-email"
           ><input
-            class="input .form-field"
+            class="input"
             type="email"
             name="user-email"
             id="user-email"
@@ -38,15 +41,19 @@
         /></label>
         <label for="password"
           ><input
-            class="input .form-field"
+            class="input"
             type="text"
             id="password"
             placeholder="enter your password here"
             required
         /></label>
         <button type="submit" class="button" id="login-button">log in</button>
+        <button class="button update" id="new-user-button">
+          Create new user
+        </button>
       </form>
     </div>
+
     <script src="./script.js"></script>
   </body>
 </html>

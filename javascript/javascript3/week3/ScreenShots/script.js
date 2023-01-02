@@ -53,7 +53,7 @@ async function getScreenShot(event) {
       targetSite,
       currentUser
     );
-    console.dir(screeenshotToRender);
+
     renderScreenshot(screeenshotToRender);
     buttonElement.innerText = "Get your screenshot";
   } catch (error) {
@@ -91,9 +91,9 @@ async function postScreenshot(url, target, user) {
     method: "POST",
     body: JSON.stringify(body)
   });
-  console.dir(response);
+
   const result = await response.json();
-  console.dir(result);
+
   return result;
 }
 
@@ -107,7 +107,7 @@ async function getScreenshots(user) {
     const listToRender = result.filter(
       (screenshot) => screenshot.userId === user
     );
-    console.log(listToRender);
+
     if (!listToRender.length) {
       throw new Error("Your user doesn't have any screenshots saved...");
     }
@@ -117,6 +117,7 @@ async function getScreenshots(user) {
   }
 }
 function renderScreenshots(screenshots) {
+  document.getElementById("screenshot-container").innerHTML = "";
   screenshots.forEach((screenshot) => renderScreenshot(screenshot));
 }
 
@@ -145,7 +146,6 @@ async function createUser(user, hash) {
 async function loginUser(event) {
   event.preventDefault();
   try {
-    console.log(`${crudcrudURL}/${crudcrudKEY}/users`);
     const response = await fetch(`${crudcrudURL}/${crudcrudKEY}/users`);
 
     if (!response.ok) {
@@ -160,17 +160,17 @@ async function loginUser(event) {
         "You have jsut created a new user, please login once again"
       );
     }
-    console.dir(result);
 
     currentUser = result.find(
       (nextUser) => nextUser.userId === user && nextUser.hash === hash
     );
-    console.dir(currentUser);
+
     if (!currentUser) {
       throw new Error("User with these credentials is not found");
     }
     getScreenshots(user);
     document.querySelector(".modal-container").classList.toggle("hidden");
+    document.getElementById("change-user").innerText = user;
   } catch (error) {
     document.getElementById(
       "login-button"
@@ -182,9 +182,22 @@ async function loginUser(event) {
   }
 }
 
+function changeUser(event) {
+  event.preventDefault();
+  document.querySelector(".modal-container").classList.toggle("hidden");
+}
+
 //event listeners
 document.getElementById("login-form").addEventListener("submit", loginUser);
-
+document.getElementById("change-user").addEventListener("click", changeUser);
 document
   .querySelector("#get-screenshot-form")
   .addEventListener("submit", getScreenShot);
+document
+  .getElementById("new-user-button")
+  .addEventListener("click", () =>
+    createUser(
+      document.getElementById("user-email").value,
+      hashCode(document.getElementById("password").value)
+    )
+  );
