@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <link href="app.css" rel="stylesheet">
+</head>
+<body>
+<nav>
+
+</nav>
+<main>
+    <div class="modal-container">
+        <div class="modal"></div>
+    </div>
+    <h1 class="heading-1">
+        My blog
+    </h1>
+    <h1 class="heading-1">Create a new post</h1>
+    <form id="create-new-post-form">
+        <div class="form-field">
+            <label for="title" class="label">Title*</label>
+            <input type="text" id="title" class="input"/>
+        </div>
+        <div class="form-field">
+            <label for="image_url" class="label">Image url*</label>
+            <input type="text" id="image_url" class="input"/>
+        </div>
+
+        <div class="form-field">
+            <label for="content" class="label">Content*</label>
+            <textarea class="textarea"  id="content"></textarea>
+        </div>
+        <button class="button">Save</button>
+    </form>
+    <div id="blog-container" class="blog-container">
+    </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

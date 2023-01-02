@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./app.css" />
+    <title>Screenshot saver - JS 3 week 3 homework</title>
+  </head>
+  <body>
+    <a href="http://" target="_blank" rel="noopener noreferrer" id="change-user"
+      >Log in</a
+    >
+    <h1 class="heading-1">Get a Screenshot from your website</h1>
+    <form id="get-screenshot-form">
+      <div class="form-field">
+        <label class="label" for="target-address">web-site url*</label>
+        <input
+          type="url"
+          class="input"
+          id="target-address"
+          placeholder="type your web-site address here, starting with http:// or https://..."
+          pattern="http(s)?:\/\/.*" />
+      </div>
+
+      <button class="button" id="get-screenshot-button">
+        Get your Screenshot
+      </button>
+    </form>
+    <div id="screenshot-container" class="screenshot-container"></div>
+    <div class="modal-container">
+      <form action="" method="get" id="login-form" class="modal form-field">
+        <label for="user-email"
+          ><input
+            class="input"
+            type="email"
+            name="user-email"
+            id="user-email"
+            placeholder="yourmail@domain"
+            required
+        /></label>
+        <label for="password"
+          ><input
+            class="input"
+            type="text"
+            id="password"
+            placeholder="enter your password here"
+            required
+        /></label>
+        <button type="submit" class="button" id="login-button">log in</button>
+        <button class="button update" id="new-user-button">
+          Create new user
+        </button>
+      </form>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
