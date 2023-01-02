@@ -1,7 +1,7 @@
 // initializing variables
 // Decided not to hide crudcrudKEY anywhere - it is valid for only 24 hours
 const screenshotKEY = "af35d9bda9msh1d5d601753355fcp1d5ca1jsnc37e78a50099";
-const crudcrudKEY = "015f575110104eb2980297c1947ca0db";
+const crudcrudKEY = "3454dc8fc29e4c269600bb3028ff235f";
 const crudcrudURL = "https://crudcrud.com/api";
 const baseSCR_URL = "https://website-screenshot6.p.rapidapi.com/screenshot";
 let currentUser = {
