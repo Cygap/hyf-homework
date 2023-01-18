@@ -70,6 +70,7 @@ function populateOptions(rates, base) {
 baseEl.addEventListener("change", () => getRates(baseEl.value));
 targetEl.addEventListener("change", handleConvertion);
 
+amountEl.addEventListener("change", handleConvertion);
 /**
  * Converts the value in user input from the base currency to target currency.
  * Displays the result as the inner text of p element.
