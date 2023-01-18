@@ -1,4 +1,5 @@
-USE HYF_lesson1
+USE HYF_lesson1;
+
 -- Find out how many tasks are in the task table
 SELECT
   COUNT(id)
@@ -15,19 +16,25 @@ where
 
 -- Find all the tasks that are marked as done
 SELECT
-  *
+  task.id,
+  task.title,
+  status.name
 FROM
   task
+  JOIN status on task.status_id = status.id
 WHERE
-  status_id = 3;
+  status.name = "Done";
 
 -- Find all the tasks that are not marked as done
 SELECT
-  *
-from
+  task.id,
+  task.title,
+  status.name
+FROM
   task
+  JOIN status on task.status_id = status.id
 WHERE
-  status_id <> 3;
+  status.name <> "Done";
 
 -- Get all the tasks, sorted with the most recently created first
 SELECT
@@ -63,19 +70,19 @@ where
 
 -- Get the title and status (as text) of all tasks
 SELECT
-  title,
-  name
+  task.title,
+  status.name
 from
   task
-  join status on status_id = status.id;
+  join status on task.status_id = status.id;
 
 -- Get the name of each status, along with a count of how many tasks have that status
 SELECT
-  name,
-  count(status_id)
+  status.name,
+  count(task.id)
 from
   status
-  join task on status_id = status.id
+  join task on task.status_id = status.id
 GROUP BY
   name;
 
