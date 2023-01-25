@@ -120,7 +120,7 @@ async function postScreenshot(url, target, user) {
  * screnshot objects to render.
  * @param {String} user - user id, currently implemented as user email.
  */
-async function getScreenshots(user) {
+async function getAllScreenshots(user) {
   try {
     const response = await fetch(`${crudcrudURL}/${crudcrudKEY}/screenshots`);
     if (!response.ok) {
@@ -212,7 +212,7 @@ async function loginUser(event) {
     if (!currentUser) {
       throw new Error("User with these credentials is not found");
     }
-    getScreenshots(user);
+    getAllScreenshots(user);
     document.querySelector(".modal-container").classList.toggle("hidden");
     document.getElementById("change-user").innerText = user;
   } catch (error) {
