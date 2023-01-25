@@ -1,0 +1,38 @@
+{
+  "Galaxies": [
+    "Galaxies in general",
+    "Group and cluster",
+    "Satellite galaxy",
+    "Supercluster"
+  ],
+  "By component": [
+    "Bulge",
+    "Spiral arm",
+    "Thin disk",
+    "Thick disk",
+    "Halo Corona",
+    "Tidal tail",
+    "Stellar stream"
+  ],
+  "By morphology": [
+    "Spiral",
+    "Barred spiral",
+    "Lenticular",
+    "Elliptical Ring",
+    "Irregular"
+  ],
+  "By size": ["Brightest cluster", "Giant elliptical", "Dwarf"],
+  "By type": [
+    "Protogalaxy",
+    "Starburst",
+    "Dark",
+    {
+      "Active": [
+        "Radio",
+        "Seyfert",
+        { "Quasar": ["Quasar", "Microquasar"] },
+        "Blazar"
+      ]
+    }
+  ]
+}
