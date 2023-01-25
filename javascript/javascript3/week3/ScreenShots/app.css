@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#get-screenshot-form {
+  width: 60rem;
+  margin: 0 auto;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.input {
+  width: 100%;
+  height: 3rem;
+}
+
+.screenshot-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.heading-1 {
+  margin: 3.5rem 0;
+  font-size: 3.6rem;
+  text-align: center;
+}
+
+.screenshot {
+  width: 60rem;
+  margin-bottom: 4.5rem;
+}
+
+.screenshot .screenshot-heading {
+  margin-bottom: 0.5rem;
+  font-size: 2.4rem;
+}
+
+.screenshot .screenshot-body {
+  font-size: 1.4rem;
+}
+
+.screenshot .screenshot-img {
+  width: 100%;
+  height: 40rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.button {
+  height: 4.5rem;
+  width: 100%;
+  background-color: dodgerblue;
+  color: #fff;
+  text-decoration: none;
+  font-size: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.button.delete {
+  background-color: #e30f0f;
+}
+
+.button.update {
+  background-color: #ff4d00;
+}
+
+#change-user {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-size: large;
+}
+/* MODAL STYLES */
+
+.modal-container {
+  height: 100vh;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #44444450;
+}
+
+.modal-container .modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  height: 30rem;
+  width: 60rem;
+  border-radius: 0.5rem;
+}
+#login-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  row-gap: 10px;
+}
+
+#login-form.button {
+  margin: 0;
+}
+.hidden {
+  display: none;
+}

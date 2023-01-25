@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript2-week2 hyfBay task</title>
+    <link rel="stylesheet" type="text/css" href="./styles/main.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/cart_styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,800"
+      rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/aec8d9e930.js"
+      crossorigin="anonymous"></script>
+    <!-- getting the icons from font awesome -->
+  </head>
+  <body>
+    <h1>hyfBay</h1>
+    <div class="wrapper">
+      <div id="hyfBay">
+        <h2>Choose your products</h2>
+        <form action="" method="get" id="list-controls">
+          <label for="filter"
+            ><i class="fa-solid fa-magnifying-glass"></i
+            ><input type="text" placeholder="enter product name" id="filter"
+          /></label>
+          <label for="price-filter"
+            ><i class="fa-solid fa-hand-holding-dollar"></i
+            ><input
+              type="number"
+              placeholder="enter max price"
+              id="price-filter"
+          /></label>
+          <label for="sorter"
+            >Sort by
+            <select id="sorter" name="sort-options"></select
+          ></label>
+          <span>Ascending/Descending</span>
+          <label class="switch" id="sort-order">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+          <p>Total: <span id="total-sum"></span></p>
+          <button>Checkout</button>
+        </form>
+        <ul id="hyf-products"></ul>
+      </div>
+    </div>
+
+    <div class="hidden cart-wrapper">
+      <header>
+        <h1 id="header">Shopping cart</h1>
+        <p id="total"></p>
+        <label for="currencies">Currency:</label>
+        <select id="currencies">
+          <option value="USD">Dollar</option>
+          <option value="EUR">Euro</option>
+          <option value="JPY">Japanese Yen</option>
+          <option value="BGN">Bulgarian Lev</option>
+          <option value="CZK">Czech Republic Koruna</option>
+          <option value="DKK">Danish Krone</option>
+          <option value="GBP">British Pound Sterling</option>
+          <option value="HUF">Hungarian Forint</option>
+          <option value="PLN">Polish Zloty</option>
+          <option value="RON">Romanian Leu</option>
+          <option value="SEK">Swedish Krona</option>
+          <option value="CHF">Swiss Franc</option>
+          <option value="ISK">Icelandic Króna</option>
+          <option value="NOK">Norwegian Krone</option>
+          <option value="HRK">Croatian Kuna</option>
+          <option value="RUB">Russian Ruble</option>
+          <option value="TRY">Turkish Lira</option>
+          <option value="AUD">Australian Dollar</option>
+          <option value="BRL">Brazilian Real</option>
+          <option value="CAD">Canadian Dollar</option>
+          <option value="CNY">Chinese Yuan</option>
+          <option value="HKD">Hong Kong Dollar</option>
+          <option value="IDR">Indonesian Rupiah</option>
+          <option value="ILS">Israeli New Sheqel</option>
+          <option value="INR">Indian Rupee</option>
+          <option value="KRW">South Korean Won</option>
+          <option value="MXN">Mexican Peso</option>
+          <option value="MYR">Malaysian Ringgit</option>
+          <option value="NZD">New Zealand Dollar</option>
+          <option value="PHP">Philippine Peso</option>
+          <option value="SGD">Singapore Dollar</option>
+          <option value="THB">Thai Baht</option>
+          <option value="ZAR">South African Rand</option>
+        </select>
+      </header>
+      <ul id="products" class="products"></ul>
+      <section class="modal hidden">
+        <div id="product-info" class="flex"></div>
+        <button class="btn close">OK</button>
+      </section>
+
+      <div class="overlay hidden"></div>
+    </div>
+    <script src="./hyfBayHelpers.js"></script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
