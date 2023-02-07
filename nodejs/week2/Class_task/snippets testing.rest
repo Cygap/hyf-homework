@@ -1,0 +1,53 @@
+
+POST http://localhost:3000/api/snippets HTTP/1.1
+content-type: application/json
+
+{
+ "title": "Snippet title",
+ "contents": "#hello",
+ "is_private": false,
+ "user_id":11
+}
+
+###
+GET http://localhost:3000/api/snippets
+
+###
+GET http://localhost:3000/api/snippets
+
+authorization: token 123456
+###
+
+POST http://localhost:3000/api/snippets HTTP/1.1
+content-type: application/json
+
+{
+ "title": "private snippet",
+ "contents": "we should hide this snippet",
+ "is_private": true,
+ "user_id":11
+}
+
+###
+POST http://localhost:3000/api/snippets HTTP/1.1
+content-type: application/json
+Authorization: token 123456
+
+{
+ "title": "New snippet 1",
+ "contents": "we should hide this snippet",
+ "is_private": true,
+ "user_id":11
+}
+
+###
+POST http://localhost:3000/api/snippets HTTP/1.1
+content-type: application/json
+Authorization: 1234
+
+{
+ "title": "New snippet 2",
+ "contents": "public",
+ "is_private": false,
+ "user_id":11
+}
