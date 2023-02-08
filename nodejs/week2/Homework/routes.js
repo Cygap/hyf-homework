@@ -3,30 +3,10 @@ import documents from "./documents.json" assert { type: "json" };
 
 const router = express.Router();
 
-class AccessError extends Error {
-  constructor(mainCause, ...params) {
-    // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(...params);
-
-    // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, AccessError);
-    }
-
-    this.name = "AccessError";
-    // Custom debugging information
-    this.mainCause = mainCause;
-    this.date = new Date();
-  }
-}
 const filterObject = (searchValue) => {
-  return documents.filter((doc) => {
-    const found = Object.values(doc).find((value) => {
-      return value.toString().includes(searchValue);
-    });
-    console.log("Found this value: ", found);
-    return found;
-  });
+  return documents.filter((doc) =>
+    Object.values(doc).find((value) => value.toString().includes(searchValue))
+  );
 };
 
 router.get("/search", (req, res) => {
@@ -57,10 +37,20 @@ router.post("/search", (req, res) => {
         "Both ?q= and fields list cannot be provided, but at least one should be. Please, choose one option"
     });
   } else if (req.query.q) {
-    console.log("query: ", req.query.q, "Result: ", filterObject(req.query.q));
     res.json(filterObject(req.query.q));
   } else if (req.body.fields) {
-    res.json({ response: "filtered objects" });
+    const result = documents.filter((doc) => {
+      let found = true;
+
+      Object.entries(req.body.fields).forEach(([key, value]) => {
+        if (!(doc[key] === value)) {
+          found = false;
+        }
+      });
+      return found;
+    });
+
+    res.json(result);
   }
 });
 
