@@ -1,0 +1,22 @@
+
+###
+
+POST http://localhost:3000/search HTTP/1.1
+content-type: application/json
+
+{
+ "fields": {"type":"doc",
+ "value":"hello world",
+ "id":2}
+}
+
+###
+
+POST http://localhost:3000/search?q=Apple HTTP/1.1
+content-type: application/json
+
+{
+ "fields": {"type":"doc",
+ "value":"hello world",
+ "id":2}
+}
