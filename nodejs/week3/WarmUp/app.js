@@ -1,15 +1,16 @@
+require("dotenv").config();
 const knex = require("knex")({
   client: "mysql2",
   connection: {
-    host: process.env.DB_HOST || "127.0.0.1",
-    port: process.env.DB_PORT || 3306,
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "my-secret-pw",
-    database: process.env.DB_NAME || "hyf_node_week3_warmup",
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     multipleStatements: true
   }
 });
-require("dotenv").configure();
+
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -42,7 +43,19 @@ contactsAPIRouter.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+let contactsTable;
+knex("contacts")
+  .columnInfo()
+  .then((result) => {
+    contactsTable = Object.keys(result);
+    console.log(
+      "\x1b[32m",
+      "%app.js line:46 knex.contactsTable",
+      "\x1b[0m",
+      contactsTable
+    );
+  });
+const API_PORT = process.env.API_PORT;
+app.listen(API_PORT, () => {
+  console.log(`Listening on port ${API_PORT}`);
 });
