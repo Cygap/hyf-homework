@@ -17,7 +17,7 @@ knex("contacts")
     contactsTable = Object.keys(result);
     console.log(
       "\x1b[32m",
-      "%app.js line:46 knex.contactsTable",
+      "app.js line:24 contactsTable",
       "\x1b[0m",
       contactsTable
     );
