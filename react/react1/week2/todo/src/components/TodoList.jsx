@@ -1,8 +1,10 @@
 import React from "react";
 import TodoItem from "./TodoItem";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import TodoContext from "./TodoContext";
 
-export default function TodoList({ tasks }) {
+export default function TodoList() {
+  const [tasks, tasksDispatch] = useContext(TodoContext);
   const [currentList, setCurrentList] = useState(tasks);
   return (
     <div>

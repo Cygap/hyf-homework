@@ -5,7 +5,8 @@ const tasksReducer = (tasks, action) => {
   switch (action.type) {
     case "DEL":
       console.log("%cTodoContext.jsx line:7 tasks", "color: #007acc;", tasks);
-      const newState = [...tasks].splice(
+      const newState = [...tasks];
+      newState.splice(
         tasks.findIndex((task) => {
           console.log(
             "%cTodoContext.jsx line:15 task.id, action.payload.id",
@@ -17,7 +18,11 @@ const tasksReducer = (tasks, action) => {
         }),
         1
       );
-
+      console.log(
+        "%cTodoContext.jsx line:20 newState",
+        "color: #007acc;",
+        newState
+      );
       return newState;
 
     default:
