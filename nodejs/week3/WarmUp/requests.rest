@@ -1,0 +1,5 @@
+GET http://localhost:5000/api/contacts/search?name=Jo&phoneNumber=678&id=10
+
+
+###
+GET http://localhost:5000/api/contacts
