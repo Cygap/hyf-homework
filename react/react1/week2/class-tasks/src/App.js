@@ -1,10 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import TodoList from "./todo";
+import Timer from "./timer";
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Timer />
         <TodoList />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
