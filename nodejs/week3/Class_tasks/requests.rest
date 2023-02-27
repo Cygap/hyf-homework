@@ -3,3 +3,12 @@ GET http://localhost:5000/api/contacts/search?name=Jo&phoneNumber=678&id=10
 
 ###
 GET http://localhost:5000/api/contacts
+
+###
+GET http://localhost:5000/api/contacts?sort=first_name%20DESC
+
+###
+GET http://localhost:5000/api/contacts?sort=first_name%20ASC%3Bdrop%20table%20contacts
+
+###
+GET http://localhost:5000/api/contacts?sort=first_name%20ASC,id%20desc
