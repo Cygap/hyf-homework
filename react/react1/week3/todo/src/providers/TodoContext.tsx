@@ -4,13 +4,12 @@ interface TodoType {
   description: string;
   deadline: string;
 }
-export const TodoContext = createContext([]);
+export const TodoContext = createContext<Array<TodoType> | undefined>([]);
 
 const TodoContextProvider = (props: PropsWithChildren) => {
-  const [initialTodos, setInitialTodos]: [
-    Array<TodoType>,
-    () => Array<TodoType>
-  ] = useState();
+  const [initialTodos, setInitialTodos] = useState<
+    Array<TodoType> | undefined
+  >();
   useEffect(() => {
     (async () => {
       const response = await fetch(
