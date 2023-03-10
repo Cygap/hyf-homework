@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+ul {
+  list-style: none;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  align-content: start;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -27,7 +34,19 @@
 .App-link {
   color: #61dafb;
 }
+.done {
+  color: #61dafb;
+  text-decoration: line-through;
+}
 
+.hidden {
+  display: none;
+}
+
+.border-wrapper {
+  border: 1px solid #282c34;
+  border-radius: 0.5rem;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -10,6 +10,7 @@ interface TodoType {
   id: number;
   description: string;
   deadline: string;
+  done: boolean;
 }
 
 interface ActionType {
@@ -33,15 +34,34 @@ function TodoReducer(
   allTodosState: TodoType[],
   action: ActionType
 ): TodoType[] {
+  const newTodos = [...allTodosState];
   switch (action.type) {
     case "ADD":
-      return allTodosState;
+      let lastid = Math.max(...newTodos.map((todo) => todo.id));
+      action.payload.forEach((todo) => (todo.id = ++lastid));
+      return newTodos.concat(action.payload);
     case "DEL":
-      return allTodosState;
+      newTodos.splice(
+        allTodosState.map((todo) => todo.id).indexOf(action.payload[0].id),
+        1
+      );
+      return newTodos;
     case "UPD":
-      return allTodosState;
+      newTodos.splice(
+        allTodosState.map((todo) => todo.id).indexOf(action.payload[0].id),
+        1,
+        action.payload[0]
+      );
+      return newTodos;
     case "DONE":
-      return allTodosState;
+      const done = !action.payload[0].done;
+      newTodos.splice(
+        allTodosState.map((todo) => todo.id).indexOf(action.payload[0].id),
+        1,
+        { ...action.payload[0], done }
+      );
+
+      return newTodos;
     case "INIT":
       return action.payload;
     default:
@@ -63,7 +83,7 @@ const TodoContextProvider = (props: PropsWithChildren) => {
         "https://gist.githubusercontent.com/benna100/391eee7a119b50bd2c5960ab51622532/raw"
       );
       const todos = await response.json();
-      console.log("%cTodoContext.tsx line:49 todos", "color: #007acc;", todos);
+
       setInitialTodos(todos);
 
       const action = { type: "INIT", payload: todos };
@@ -77,5 +97,5 @@ const TodoContextProvider = (props: PropsWithChildren) => {
     </TodoContext.Provider>
   );
 };
-
+export type { TodoType };
 export default TodoContextProvider;
