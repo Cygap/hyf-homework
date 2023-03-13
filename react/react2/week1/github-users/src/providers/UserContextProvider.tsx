@@ -22,23 +22,66 @@ interface GithubUser {
   url: string;
 }
 
-const UserContext = createContext<GithubUser[]>([]);
+interface CurrentUserContext {
+  users: GithubUser[];
+  userName: string;
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
+  loading: boolean;
+}
+
+const UserContext = createContext<CurrentUserContext>({
+  users: [],
+  userName: "",
+  setUserName: () => {},
+  loading: false
+});
 export default function UserContextProvider({
   children
 }: React.PropsWithChildren) {
   const [users, setUsers] = useState<GithubUser[]>([]);
+  const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}?q=${"benna"}`)
-      .then((response) => {
-        console.log(
-          "%cUserContextProvider.tsx line:11 response",
-          "color: #007acc;",
-          response
-        );
-        return response.json();
-      })
-      .then((data) => setUsers(data.items));
-  }, []);
-  return <UserContext.Provider value={users}>{children}</UserContext.Provider>;
+    if (userName) {
+      setLoading(true);
+    }
+    // we abort fetching if users continues to type while the data is still loading...
+    const controller = new AbortController();
+    // for slower connections we wait for 1/10th of a second for user to end typing. Thus we make fewer unnecessary requests.
+    const timerId = setTimeout(() => {
+      if (userName) {
+        const signal = controller.signal;
+
+        fetch(`${process.env.REACT_APP_BASE_URL}?q=${userName}`, { signal })
+          .then((response) => response.json())
+          .then((data) => {
+            setUsers(data.items);
+            setLoading(false);
+          })
+          .catch((error) => {
+            if (error.name === "AbortError") {
+              console.log(
+                "%cUserContextProvider.tsx fetching was aborted, while user types",
+                "color: #007acc;",
+                error.message
+              );
+            } else {
+              throw error;
+            }
+          });
+      }
+    }, 100);
+
+    return () => {
+      controller.abort();
+      clearTimeout(timerId);
+    };
+  }, [userName]);
+
+  return (
+    <UserContext.Provider value={{ users, userName, setUserName, loading }}>
+      {children}
+    </UserContext.Provider>
+  );
 }
 export { UserContext };
