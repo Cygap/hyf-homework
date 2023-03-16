@@ -3,7 +3,7 @@ import { UserContext } from "../providers/UserContextProvider";
 
 export default function UserList() {
   const { users, userName, setUserName, loading } = useContext(UserContext);
-  console.log("%cUserList.tsx line:6 loading", "color: #007acc;", loading);
+  console.log("%cUserList.tsx line:6 users", "color: #007acc;", users);
   return (
     <div>
       <input
@@ -16,9 +16,11 @@ export default function UserList() {
         <p>Loading...</p>
       ) : (
         <ul>
-          {users.map((user) => (
-            <li key={user.id}>{user.login}</li>
-          ))}
+          {users.length ? (
+            users.map((user) => <li key={user.id}>{user.login}</li>)
+          ) : (
+            <li>No users to show</li>
+          )}
         </ul>
       )}
     </div>

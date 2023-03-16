@@ -51,9 +51,31 @@ export default function UserContextProvider({
     const timerId = setTimeout(() => {
       if (userName) {
         const signal = controller.signal;
-
+        console.log(
+          "%cUserContextProvider.tsx line:54 `${process.env.REACT_APP_BASE_URL}?q=${userName}`",
+          "color: #007acc;",
+          `${process.env.REACT_APP_BASE_URL}?q=${userName}`
+        );
         fetch(`${process.env.REACT_APP_BASE_URL}?q=${userName}`, { signal })
-          .then((response) => response.json())
+          .then((response) => {
+            console.log(
+              "%cUserContextProvider.tsx line:61 response",
+              "color: #007acc;",
+              response
+            );
+            if (response.ok) {
+              return response.json();
+            } else {
+              return {
+                items: [
+                  {
+                    id: 0,
+                    login: `Server responded with status ${response.status}`
+                  }
+                ]
+              };
+            }
+          })
           .then((data) => {
             setUsers(data.items);
             setLoading(false);
@@ -69,6 +91,8 @@ export default function UserContextProvider({
               throw error;
             }
           });
+      } else {
+        setUsers([]);
       }
     }, 100);
 
