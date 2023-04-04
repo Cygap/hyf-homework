@@ -1,5 +1,7 @@
 cabbage
 cucumber
-coliflower
+carrot
 tomato
 pumpkin
+coliflower
+potato
