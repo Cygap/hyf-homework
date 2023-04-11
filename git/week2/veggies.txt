@@ -1,5 +1,8 @@
 cabbage
 cucumber
-coliflower seeds
+carrot
 tomato
 pumpkin
+coliflower
+potato
+coliflower seeds
